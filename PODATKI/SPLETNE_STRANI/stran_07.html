@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" class=" dark">
+<head>
+<title>Stock Screener - Custom midover pos dividendyield</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=1024"><meta name="description" content="Stock screener for investors and traders, financial visualizations.">
+<meta name="robots" content="noindex">
+
+            <link rel="preload" href="/fonts/ibm-plex-sans-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+            <link rel="preload" href="/fonts/ibm-plex-sans-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+            <script>
+        window.notificationsArray = [];
+        window.renderScriptNotLoaded = function () {};
+        window.handleScriptNotLoaded = function (element) {
+            window.notificationsArray.push(element);
+            window.sentryDisabled = true;
+            window.handleScriptNotLoaded = function () {};
+        };
+        // window.openEliteFeaturesDialog ... MUST NOT HAVE FALLBACK!
+        window.openGenericAlertDialog ??= (message) => new Promise(resolve => resolve(alert(message)));
+        window.openGenericConfirmDialog ??= (message) => new Promise(resolve => resolve(confirm(message) || undefined));
+        window.openGenericDeleteDialog ??= (message) => new Promise(resolve => resolve(confirm(message) || undefined));
+        window.openGenericPromptDialog ??= (message, value = "") => new Promise(resolve => resolve(prompt(message, value) ?? undefined));
+        window.showFailureNotification ??= (message) => alert(message);
+        window.showSuccessNotification ??= (message) => alert(message);
+        window.showDefaultNotification ??= (message) => alert(message);
+    </script><link rel="stylesheet" href="/assets/dist-legacy/redesign.9aaa3c9c.css" type="text/css" onerror="window.handleScriptNotLoaded(this)">
+<link rel="stylesheet" href="/assets/dist-legacy/main.8b207e68.css" type="text/css" onerror="window.handleScriptNotLoaded(this)">
+<script src="/assets/dist-legacy/1378.v1.82520c61.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/finviz_t.v1.63d82246.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-537M973G');</script>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function getFvt() {
+        var cookie = document.cookie.split('; ').find(function(row) { return row.startsWith('finviz_t='); });
+        if (cookie) return decodeURIComponent(cookie.split('=')[1]);
+        try { return localStorage.getItem('finviz_t'); } catch (e) { return null; }
+    }
+
+    function gtag(command, key, value) {
+        var fvt = getFvt();
+        if (command === 'set' && key === 'page_path') {
+            var pageviewData = {
+                event: 'virtual_pageview',
+                page_path: value,
+                ...(fvt && { anon_id: fvt })
+            };
+            dataLayer.push(pageviewData);
+            return;
+        }
+
+        if (command === 'event') {
+            var eventData = {
+                event: key,
+                ...(value || {}),
+                ...(fvt && { anon_id: fvt })
+            };
+            dataLayer.push(eventData);
+            return;
+        }
+
+        dataLayer.push(arguments);
+    }
+</script><link rel="icon" type="image/png" href="/favicon_2x.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon.png" sizes="16x16">
+<script async=true>
+    !(function(q,_name){q[_name]=q[_name]||function k(){(k.q=k.q||[]).push(arguments)},q[_name].v=q[_name].v||2,q[_name].s="1";!(function(q,k,F,H){function m(F,H){try{m=q.localStorage,(F=JSON.parse(m[decodeURI(decodeURI('%67%25%365%25%37%34I%257%34e%6d'))]("_aQS01OUU2MkU1RURCQzRDMzUyMTIwQkM4ODYtMTE0")).lgk||[])&&(H=q[k].pubads())&&F.forEach((function(q){q&&q[0]&&H.setTargeting(q[0],q[1]||"")}))}catch(N){}var m}try{(H=q[k]=q[k]||{}).cmd=H.cmd||[],typeof H.pubads===F?m():typeof H.cmd.unshift===F?H.cmd.unshift(m):H.cmd.push(m)}catch(N){}})(window,decodeURI(decodeURI('%25%367o%25%36fg%256c%25%36%35%2574%256%31%25%36%37')),"function");;!(function(q){q.__admiral_getConsentForGTM=function(k){function F(q,F){k((function(q,k){const F=q&&q.purpose&&q.purpose.consents||{};return{adConsentGranted:k||!!F[1],adUserData:k||!!F[7],adPersonalization:k||!!F[3],analyticsConsentGranted:k||!!F[1],personalizationConsentGranted:k||!!F[5],functionalityConsentGranted:k||!1,securityConsentGranted:k||!0}})(q,!F))}q[_name]("after","cmp.loaded",(function(k){k&&k.tcData&&k.tcData.gdprApplies?(k.consentKnown&&F(k.tcData,!0),q[_name]("after","cmp.updated",(function(q){F(q.tcData,!0)}))):F({},!1)}))}})(window);})(window,decodeURI(decodeURI('a%256%34m%25%369%25%37%32%256%31l')));!(function(q,k,F,H){F=q.createElement(k),q=q.getElementsByTagName(k)[0],F.async=1,F.src="https://urbanlaurel.com/assets/js/q2o3um29vhadcznq.vendor.js",(H=0)&&H(F),q.parentNode.insertBefore(F,q)})(document,"script");;;!(function(q,k,F,H,m){function N(){for(var q=[],F=0;F<arguments.length;F++)q.push(arguments[F]);if(!q.length)return m;"ping"===q[0]?q[2]({gdprAppliesGlobally:!!k[decodeURI(decodeURI('_%25%35%66c%6d%25%37%30%254%37%25%364%25%370%257%32A%2570%25%370%256%63%2569%65%73%2547%256%63o%25%36%32%25%361%25%36%63%6c%79'))],cmpLoaded:!1,cmpStatus:"stub"}):q.length>0&&m.push(q)}function L(q){if(q&&q.data&&q.source){var H,m=q.source,N="__tcfapiCall",L="string"==typeof q.data&&q.data.indexOf(N)>=0;(H=L?((function(q){try{return JSON.parse(q)}catch(k){}})(q.data)||{})[N]:(q.data||{})[N])&&k[F](H.command,H.version,(function(q,k){var F={__tcfapiReturn:{returnValue:q,success:k,callId:H.callId}};m&&m.postMessage(L?JSON.stringify(F):F,"*")}),H.parameter)}}!(function t(){if(!k.frames[H]){var F=q.body;if(F){var m=q.createElement("iframe");m.style.display="none",m.name=H,F.appendChild(m)}else setTimeout(t,5)}})(),N.v=1,"function"!=typeof k[F]&&(k[F]=k[F]||N,k.addEventListener?k.addEventListener("message",L,!1):k.attachEvent&&k.attachEvent("onmessage",L))})(document,window,"__tcfapi","__tcfapiLocator",[]);;;!(function(q,k,F,H,m,N,L,t,A,K,R){function Y(){for(var q=[],k=arguments.length,F=0;F<k;F++)q.push(arguments[F]);var H,m=q[1],N=typeof m===L,t=q[2],Y={gppVersion:"1.1",cmpStatus:"stub",cmpDisplayStatus:"hidden",signalStatus:"not ready",supportedAPIs:["7:usnat"].reduce((function(q,k){return k&&q.push(k),q}),[]),cmpId:9,sectionList:[],applicableSections:[0],gppString:"",parsedSections:{}};function v(q){N&&m(q,!0)}switch(q[0]){case"ping":return v(Y);case"queue":return A;case"events":return K;case"addEventListener":return N&&(H=++R,K.push({id:H,callback:m,parameter:t})),v({eventName:"listenerRegistered",listenerId:H,data:!0,pingData:Y});case"removeEventListener":for(H=!1,F=0;F<K.length;F++)if(K[F].id===t){K.splice(F,1),H=!0;break}return v(H);case"hasSection":case"getSection":case"getField":return v(null);default:return void A.push(q)}}Y.v=2,typeof k[F]!==L&&(k[F]=k[F]||Y,k[t]&&k[t]("message",(function(q,H){var L="string"==typeof q.data;(H=L?((function(q){try{return JSON.parse(q)}catch(k){}})(q.data)||{})[m]:(q.data||{})[m])&&k[F](H.command,(function(k,F){var m={__gppReturn:{returnValue:k,success:F,callId:H.callId}};q.source&&q.source.postMessage(L?JSON.stringify(m):m,"*")}),N in H?H[N]:null,H.version||1)}),!1),(function v(){if(!k.frames[H]){var F=q.body;if(F){var m=q.createElement("iframe");m.style.display="none",m.name=H,F.appendChild(m)}else setTimeout(v,5)}})())})(document,window,"__gpp","__gppLocator","__gppCall","parameter","function","addEventListener",[],[],0);
+    ;(function () {
+        window.ic_privacySelectorLoaded = false;
+
+        function checkBanners() {
+            if (window.checkBannersLoaded) checkBannersLoaded();
+        }
+
+        window.admiral("after", "candidate.dismissed", checkBanners);
+
+        // A blocked consent script means neither the dialog nor the ads will ever
+        // show up, so empty slots can be filled right away.
+        var consentScript = document.querySelector('script[src*="urbanlaurel.com"]');
+        if (consentScript) consentScript.addEventListener('error', checkBanners);
+
+        window.admiral("after", "cmp.loaded", function (eventArg) {
+            console.log("Admiral CMP Loaded ", eventArg);
+            // Admiral wraps #whisper-anchor in a body child with an unlayered `min-height: 1px`.
+            // Do not use a `div:has()` rule here, because it restyles the ancestors of each inserted node.
+            var admiralHost = document.getElementById('whisper-anchor')?.parentElement;
+            if (admiralHost?.parentElement === document.body) admiralHost.classList.add('min-h-0!');
+            if (eventArg.euVisitor) return;
+            // Users outside EU don't get a consent dialog. Don't wait for it.
+            checkBanners();
+            try {
+                __gpp("addEventListener", function (tcData) {
+                    window.ic_privacySelectorLoaded = true;
+                });
+            } catch (e) {
+                console.error(e)
+            }
+        });
+    })();
+
+    function openCCPADialog() {
+        document.querySelector('#ic_us_privacy a')?.click()
+    }
+</script><script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "unkwe89mcc");
+</script><script>
+            FinvizSettings = {
+                versionImages: 2459695805,
+                iconSprites: {"icons":"icons.4ede4ca4.svg","icons_blogs":"icons_blogs.37b5403f.svg","icons_calendar":"icons_calendar.5a6f733b.svg","icons_careers":"icons_careers.8c558ad5.svg","icons_chart-layouts":"icons_chart-layouts.6d5730f1.svg","icons_chart-tools":"icons_chart-tools.7c4a77ba.svg","icons_chart-types":"icons_chart-types.68df96b3.svg","icons_companies":"icons_companies.d6ef954b.svg","icons_crypto":"icons_crypto.3f55894f.svg","icons_news-content":"icons_news-content.5b347035.svg","icons_news":"icons_news.24dc76d2.svg","icons_screener":"icons_screener.e3e3b175.svg","icons_signals":"icons_signals.0e727212.svg","icons_social":"icons_social.629cf97e.svg"},
+                versionLogo: "53b44e68",
+                hasUserPremium: false,
+                trialLength: null,
+                isTrialWithCC: true,
+                isUserInternal: false,
+                userId: null,
+                name: "",
+                email: "",
+                nodeChartsDomain: "https://charts2-node.finviz.com",
+                hasUserStickyHeader: false,
+                adsProvider: 1,
+                hasRedesignEnabled: true,
+                hasRedesignPortfolio: false,
+                hasDarkTheme: true,
+                quoteSearchExt: '',
+                isJoinBannerVisible: false,
+                hasKnowledgeBase: true,
+                showTickerLogos: true,
+                hasDiscountCampaign: false,
+                discountCampaign: null,
+                featureFlags: {"knowledgebase":true,"googleonetap":true,"subscriptionredesign":true,"stockswhymoving":true,"redesign":true},
+                featureDiscovery: [{"id":"futures-performance","label":"New","tier":"standard","variant":"badge","hideStrategy":"timeInteraction","releasedAt":"2026-09-15","durationDays":28,"maxSessions":null,"targets":["futures.performance"],"tooltipTitle":"New: Futures Performance","tooltipDescription":"Performance table and chart for futures.","analyticsName":"futures_performance"},{"id":"forex-performance","label":"New","tier":"standard","variant":"badge","hideStrategy":"timeInteraction","releasedAt":"2026-09-15","durationDays":28,"maxSessions":null,"targets":["forex.performance"],"tooltipTitle":"New: Forex Performance","tooltipDescription":"Performance table and chart for forex.","analyticsName":"forex_performance"},{"id":"crypto-performance","label":"New","tier":"standard","variant":"badge","hideStrategy":"timeInteraction","releasedAt":"2026-09-15","durationDays":28,"maxSessions":null,"targets":["crypto.performance"],"tooltipTitle":"New: Crypto Performance","tooltipDescription":"Performance table and chart for crypto.","analyticsName":"crypto_performance"}]
+            };
+        
+FinvizSettings.hoverCharts = { stock: { timeframe: 'd', dateRange: null, width: 466, height: 219, barWidth: 1, barMargin: 1, borderWidth: 1 }, forex: { timeframe: 'd', dateRange: null, width: 466, height: 219, barWidth: 2, barMargin: 1, borderWidth: 1 }, futures: { timeframe: 'd', dateRange: null, width: 466, height: 219, barWidth: 2, barMargin: 1, borderWidth: 1 } }</script><script src="/assets/dist-legacy/script/browser_check.v1.1605ca48.js?v=4"></script><script src="/assets/dist-legacy/script/notice.v1.f13b0329.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/runtime.v1.ada7696f.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/libs_init.v1.fe8265f7.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/1378.v1.82520c61.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/8672.v1.fa7a102c.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/2019.v1.76106f5a.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/8028.v1.70cb29db.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/816.v1.d2017e60.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/1571.v1.9d0a223f.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/3580.v1.228ab299.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/2347.v1.c7b38db9.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/header.v1.6dd1b7d3.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script type="text/javascript">
+            var portfolioRowsLimit=50;
+            var compareTickersLimit=25;
+            function ScreenerSelectOnChange() {}
+            FinvizSettings.screenerCurrentTimeframe = {timeframe: "d", dateRange: null}
+
+            function trackPagination(source) {
+                window.gtag && window.gtag('event', 'click', {
+                    event_category: 'pagination',
+                    event_label: source });
+            }
+
+            function handleETFCheckboxClick(input) {
+                fetch('/api/set_cookie?cookie=disabledETFFiltersAll&value=' + !input.checked )
+                    .catch(function(){})
+                    .then(function(){ location.reload() })
+            }
+        </script><script src="/assets/dist-legacy/script/screener.v1.027caa37.js" type="text/javascript" onerror="window.handleScriptNotLoaded(this)"></script>
+<script>FinvizSettings.defaultPeriod = 'd'</script>
+<link rel="preload" as="script" href="/assets/dist-legacy/9218.v1.b0717e00.js" data-chunk-id="screener-presets-select"><script src="/assets/dist-legacy/5179.v1.532d917b.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/5432.v1.5b5ac708.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/6834.v1.c9992ba7.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/7842.v1.566fae31.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/4482.v1.2c6eac2d.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/screener.v1.ba7c3ac2.js" onerror="window.handleScriptNotLoaded(this)" defer></script></head>
+
+          <script>
+            const channelIdToLabel = {
+                '1': "MarketWatch",
+                '2': "WSJ",
+                '3': "Reuters",
+                '4': "Yahoo Finance",
+                '6': "The New York Times",
+                '7': "Bloomberg",
+                '9': "BBC",
+                '10': "CNBC",
+                '11': "Fox Business",
+                '102': "Mish\u0027s Global Economic Trend Analysis",
+                '105': "Trader Feed",
+                '113': "Howard Lindzon",
+                '114': "Seeking Alpha",
+                '123': "Fallond Stock Picks",
+                '132': "Zero Hedge",
+                '136': "Daily Reckoning",
+                '141': "Abnormal Returns",
+                '142': "Calculated Risk",
+                '143': "The Big Picture",
+                '144': "The Capital Spectator",
+                '145': "Angry Bear",
+                '146': "Stratechery",
+                '147': "Real Investment Advice",
+                '150': "App Economy Insights",
+                '151': "MBI Deep Dives",
+                '152': "Stock Analysis Compilation",
+                '153': "The Transcript",
+                '154': "TKer",
+                '155': "Dividendology",
+                '156': "Behavioral Value Investor",
+                '157': "Yet Another Value Blog",
+                '158': "The Weekly ChartStorm",
+                '159': "The Sandbox Daily",
+                '160': "Net Interest",
+                '161': "Capital Flows",
+                '162': "Semianalysis",
+                '163': "The Bear Cave",
+                '164': "Fabricated Knowledge",
+                '165': "Klement on Investing",
+                '166': "Apricitas Economics",
+                '167': "Big Technology",
+                '168': "Doomberg",
+                '169': "The Overshoot",
+                '170': "The Diff",
+                '171': "Speedwell Research",
+                '172': "Commodity Context",
+                '173': "The Hermit",
+                '174': "Exponential View",
+            }
+            function trackAndOpenNews(event, channel, url) {
+              event.preventDefault()
+              window.open(url, '_blank')
+
+              let channelLabel
+              if (typeof channel === 'string') {
+                const isInternalNewsUrl = url.startsWith('/news/')
+                channelLabel = isInternalNewsUrl ? 'internal-' + channel : channel
+              } else {
+                const label = channelIdToLabel[channel]
+                channelLabel = label !== undefined ? label : channel
+              }
+              window.gtag && window.gtag('event', 'click', {
+                non_interaction: true,
+                event_category: 'news',
+                event_label: channelLabel,
+                value: 1 });
+            }
+          </script>
+          <body class="m-0 is-screener">    <div class="flex w-full items-center justify-center overflow-hidden py-2.5">
+        <div id="banner_position" class="flex items-center justify-center">
+            <div id="IC_D_728x90_1"class="relative overflow-hidden flex items-center justify-center w-full mx-auto" style="width:728px;height:90px;max-height:90px"></div>
+        </div>
+    </div>    <script src="/assets/dist-legacy/script/notice.v1.f13b0329.js" onerror="window.handleScriptNotLoaded(this)" defer></script>
+    <div class="flex w-full items-start border-y border-violet-500/16 bg-violet-500/12 px-4 py-2 font-sans text-sm text-violet-500 dark:text-violet-300 sm:items-center sm:py-1.5" data-fv-notice="elite-top-banner-anonymous" data-nosnippet>
+        <div class="flex flex-1 flex-col items-center justify-center gap-2 text-center sm:flex-row sm:text-left">
+            <div class="flex items-center gap-2">
+                <svg width="16" height="16" class="shrink-0 fill-current">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#starOutlined"/>
+</svg>
+                <span><strong class="font-medium">Elite members</strong> get real-time data, technical charting, alerts, and no ads - starting at $24.96/mo.</span>
+            </div>
+            <a href="/register?poster=trial&utm_source=finviz&utm_medium=banner&utm_campaign=elite-top-banner" onclick="window.TrackPromotionEvent && window.TrackPromotionEvent('select_promotion', { creative_slot: 'top-banner', creative_name: 'bannerEliteTopAnonymous', promotion_id: 'elite_top_banner', promotion_name: 'Elite Top Banner' });" class="inline-flex h-7 shrink-0 items-center justify-center gap-1.5 rounded-md border-none bg-violet-500 px-3 text-2xs font-medium text-white outline-none ring-gray-200 hover:bg-violet-600 active:bg-violet-700 focus-visible:ring-2 dark:ring-gray-500 dark:hover:bg-violet-400">
+                Try Elite for Free
+                <svg width="16" height="16" class="shrink-0 fill-current">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#arrowLongRight"/>
+</svg>
+            </a>
+        </div>
+            <a title="Close" class="ml-2 flex size-5 shrink-0 items-center justify-center rounded-full hover:bg-violet-500/20 max-lg:size-7" href="javascript:void(0)" onclick="window.FinvizCloseNotice('elite-top-banner-anonymous')">
+        <svg width="16" height="16" class="shrink-0 max-lg:size-5">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#clear"/>
+</svg>
+    </a>
+    </div>
+    <script>window.TrackPromotionEvent && window.TrackPromotionEvent('view_promotion', { creative_slot: 'top-banner', creative_name: 'bannerEliteTopAnonymous', promotion_id: 'elite_top_banner', promotion_name: 'Elite Top Banner' });</script><div id="js-elite-features-root"></div><span class="absolute invisible size-0 overflow-hidden"><span id="ic_us_privacy"></span></span>
+            <script>
+                window.adLayoutVersion = 'control';
+                window.adLoggedIn = 'NotLoggedIn';
+
+                var cookieName = 'fv_block';
+                var selector = '[data-google-query-id]';
+                var selectorFrame = selector + ' iframe, ' + selector + ' [id*=aax]';
+                var cookieExpiry = 5 * 60 * 1000; // 5min
+                var checkTimeout = 20 * 1000; // 20sec
+
+                function getCookie(value) {
+                    var expiration = +new Date() + cookieExpiry;
+                    return cookieName + '=' + value + '; expires=' + (new Date(expiration)).toUTCString() + '; path=/';
+                }
+
+                var finvizBannersLoaded = false;
+                function loadFinvizBanners(setCookie) {
+                    
+                    if (setCookie) document.cookie = getCookie('block');
+                    if (finvizBannersLoaded) return;
+                    finvizBannersLoaded = true;
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = '/assets/dist-legacy/script/finviz_b.v1.66b6f4ed.js';
+                    document.head.appendChild(s);
+                }
+
+                function checkBannersLoaded() {
+                    var checkEnd = +new Date() + checkTimeout;
+                    function asyncCheckIfExists(selector, resolve) {
+                        var now = +new Date();
+                        var container = document.querySelector(selector);
+                        if (!container && checkEnd > now) return setTimeout(function () { asyncCheckIfExists(selector, resolve) }, 1000)
+                        resolve(!!container);
+                    }
+
+                    asyncCheckIfExists(selector, function (exists) {
+                        if (!exists) return loadFinvizBanners(true);
+
+                        asyncCheckIfExists(selectorFrame, function (hasIframe) {
+                            if (!hasIframe) return loadFinvizBanners(true);
+                        })
+                    })
+                }
+
+                if (document.cookie.indexOf(cookieName) >= 0) {
+                    loadFinvizBanners(false);
+                } else {
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.onerror = loadFinvizBanners;
+                    s.src = 'https://u5.investingchannel.com/static/uat.js';
+                    document.head.appendChild(s);
+
+                    InvestingChannelQueue = window.InvestingChannelQueue || [];
+                    var ic_page;
+
+                    function refreshAd(container, refreshes) {
+                        var placementTag, adslot;
+                        window.InvestingChannelQueue.push(function () {
+                            var pubTags = ic_page.getPubTag.call(ic_page, container.id);
+                            if (!pubTags) return;
+                            var pubTag = pubTags[0];
+                            placementTag = pubTag.mPlacements[0].mTagToRender;
+                            adslot = pubTag.mPlacements[0].mPublisherKval.adslot[0];
+                            // Update div ID
+                            var id = container.id.split('_');
+                            var numberOfDivs = document.querySelectorAll('[id*=' + id.slice(0, id.length - 1).join('_') + ']').length;
+                            var newDivNumber = Number(id.pop()) + numberOfDivs * refreshes;
+                            container.setAttribute('id', id.join('_') + '_' + newDivNumber);
+                            // Destroy previous pubtag & reset container html (loading span)
+                            pubTag.destroy();
+                            container.innerHTML = '';
+                        });
+                        window.InvestingChannelQueue.push(function () {
+                            if (!placementTag || !adslot) return
+                            // Create new pub tag
+                            var newTag;
+                            var layoutId = placementTag.mNativeLayout ? placementTag.mNativeLayout.nativelayoutid : null;
+                            if (layoutId) {
+                                newTag = ic_page.defineNativeTag('finviz/' + placementTag.mTarget.dfpkeyname, placementTag.mAdSize, container.id, layoutId);
+                                var nativeLayout, layoutData
+
+                                try {
+                                  nativeLayout = newTag.mPlacements[0].mTags[0].mNativeLayout;
+                                } catch (e) {
+                                    console.log(e.message)
+                                }
+
+                                try {
+                                  layoutData = newTag.mTemplate.mNativeLayout[layoutId].Data
+                                  if (layoutData && nativeLayout && !nativeLayout.layout) {
+                                    newTag.mPlacements[0].mTags[0].mNativeLayout = layoutData
+                                  }
+                                } catch (e) {
+                                    console.log(e.message)
+                                }
+                            } else {
+                                newTag = ic_page.defineTag('finviz/' + placementTag.mTarget.dfpkeyname, placementTag.mAdSize, container.id);
+                            }
+                            // Set adslot param
+                            newTag.setKval({ adslot: adslot });
+                            newTag.setKval({ kw: 'ajax' });
+                            newTag.render();
+                        });
+                    }
+
+                    var refreshCount = 1;
+                    function refreshAds(selectors) {
+                        if (window.ic_page) {
+                            document.querySelectorAll(selectors).forEach(function (element) {
+                                try {
+                                    refreshAd(element, refreshCount);
+                                } catch (e) {
+                                    console.log('Ad refresh error for:', element, e);
+                                }
+                            });
+                            window.ic_page.loadMore();
+                            refreshCount++;
+                        }
+                    }
+
+
+                    InvestingChannelQueue.push(function() {
+                        var icConfig = window['FINVIZ_IC_UAT_CONFIG'] = {};
+                        
+                        ic_page = InvestingChannel.UAT.Run('df0d0d52-cc7f-11e8-82a5-0abbb61c4a6a', icConfig);
+                    });
+
+                    var hash = null;
+                    if (typeof hash === 'string') {
+                      InvestingChannelQueue.push(function() {
+                          if (ic_page) {
+                              ic_page.setUser({'SHA256': hash}, 'hash', '');
+                          }
+                      });
+                    }
+                }
+            </script>
+            <script>
+                (function () {
+                    var detectionEl = document.createElement('div');
+                    detectionEl.style.position='absolute';
+                    detectionEl.style.top='-9999px';
+                    detectionEl.style.width='100px';
+                    detectionEl.style.height='100px';
+                    detectionEl.style.overflow='scroll';
+                    document.body.appendChild(detectionEl);
+                    document.documentElement.style.setProperty('--fv-scrollbar-width', (detectionEl.offsetWidth - detectionEl.clientWidth) + 'px');
+                    document.body.removeChild(detectionEl);
+                })()
+            </script>
+        <div id="notifications-container"></div><div id="notifications-react-root"></div><div id="dialogs-react-root"></div><div id="dialog-portal-root" style="display:contents"></div>
+<div class="header  flex items-center">
+    <div class="header-container flex items-center">
+        <div class="pr-6.75">
+            <a href="/" class="flex items-center gap-2.5">
+<svg width="213" height="32" class="block">
+    
+<use href="/img/logo.svg?rev=53b44e68#free-v2" class="dark:hidden" />
+<use href="/img/logo.svg?rev=53b44e68#free-v2-dark" class="hidden dark:block" />
+</svg>            </a>
+        </div>
+        <div class="flex items-center">
+            <div id="search" class="w-95">
+                <form action="/search">
+    <div class="navbar-search-placeholder max-w-95">
+        <span class="icon-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" width="16" height="16">
+                <path d="M16.9 15.5l4 4c.2.2.1.5 0 .7l-.7.7a.5.5 0 01-.8 0l-4-4c0-.2-.2-.3-.3-.4l-.7-1a7 7 0 01-11.2-4 7 7 0 1112.2 3l1 .6.5.4zM5 10a5 5 0 1010 0 5 5 0 00-10 0z" />
+            </svg>
+        </span>
+        <input name="p" placeholder="Search ticker, company or profile" class="search-input is-free"/>
+    </div>
+</form>
+            </div>
+            <div id="microbar_position" class="flex items-center pl-2"><div><div id="IC_D_88x31_1"class="relative overflow-hidden flex items-center justify-center w-full mx-auto" style="width:88px;height:31px;max-height:31px"></div></div></div>
+        </div>
+        <div class="flex-1"></div>
+        <div class="flex items-center gap-2.5">
+                <div class="relative">
+        <a data-testid="chart-layout-theme" href="#" class="!flex !bg-transparent !border-b-0 !p-0" title="Toggle Light/Dark mode" onclick="setChartThemeCookie('light', true)">
+            <div class="relative box-content flex rounded-full w-10 h-5 border border-white text-default bg-primary dark:border-gray-750 justify-end">
+                <div class="box-border w-1/2 rounded-full p-px border border-white bg-gray-100 dark:border-gray-800 dark:bg-gray-600 flex justify-center items-center">
+                    <svg width="16" height="16" class="fill-current inline-block -ml-px">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#moonOutlined"/>
+</svg>
+                </div>
+            </div>
+        </a>
+    </div>
+
+            <div class="flex items-center gap-4">
+                    <a href="/login" class="flex items-center gap-1 rounded px-2 py-1.5 text-2xs leading-4 font-medium whitespace-nowrap hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-700 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
+                        <svg width="16" height="16" class="shrink-0 fill-current text-muted-2">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#userBig"/>
+</svg>
+                        Login
+                    </a>
+                    <a href="/register" class="inline-flex h-7 items-center justify-center rounded-md bg-blue-400 px-3 text-2xs leading-4 font-medium whitespace-nowrap text-white hover:bg-blue-500 active:bg-blue-600">Sign up free</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navbar  flex items-center min-h-8.5">
+    <div class="header-container flex items-center">
+                <a class="nav-link is-first" href="/">Home</a>
+                <a class="nav-link is-active" href="/screener">Screener</a>
+                <a class="nav-link" href="/map">Maps</a>
+                <a class="nav-link" href="javascript:window.openEliteFeaturesDialog?.(&#x27;multi-charts&#x27;, event)">Charts</a>
+                <a class="nav-link" href="/news">News</a>
+                <a class="nav-link" href="/groups">Groups</a>
+                <a class="nav-link" href="/insidertrading">Insider</a>
+                <a class="nav-link" href="/futures">Futures</a>
+                <a class="nav-link" href="/forex">Forex</a>
+                <a class="nav-link" href="/crypto">Crypto</a>
+                <a class="nav-link" href="/portfolio">Portfolio</a>
+                <a class="nav-link" href="/calendar/earnings/season-preview">Calendar</a>
+        <div class="relative flex-1">
+            <div class="absolute inset-0 flex items-center justify-end">
+                <div id="time" class="w-full"></div>
+            </div>
+        </div>
+        <div class="mx-2 h-3.5 w-px bg-gray-200/30 dark:bg-gray-500/30"></div>
+            <a class="nav-link is-elite" href="/elite">Pricing</a>
+        <div id="js-knowledge-base-static">
+            <a href="/knowledge-base" class="nav-link is-help px-4">Help</a>
+        </div>
+            <div id="js-knowledge-base-root" class="hidden"></div>
+        
+
+    </div>
+</div>
+
+          <script>
+            // Dropping the published-page theme pin lets an explicit toggle win over it.
+            function reloadPage () {
+              var url = new URL(location.href)
+              if (!url.searchParams.has('th')) { location.reload(); return }
+              url.searchParams.delete('th')
+              location.replace(url.toString())
+            }
+            function setChartThemeCookie(chartsTheme) {
+              fetch('/api/set_cookie?cookie=chartsTheme&value=' + chartsTheme ).catch(function(){}).then(function(){
+                window.gtag && window.gtag('event', 'click', { event_category: 'theme', event_label: 'toggle', value: chartsTheme, eventCallback: reloadPage });
+                setTimeout(reloadPage,1000);
+              })
+            }
+          </script><div id="js-feature-discovery-root"></div>    <div class="w-full flex justify-center dark:bg-violet-800 bg-violet-600 font-sans" data-fv-notice="promo-instant-earnings" data-nosnippet>
+        <div class="h-10 relative flex gap-2.5 items-center dark:text-violet-200 text-white">
+            <div class="py-3 text-sm font-medium dark:text-violet-200 text-violet-100">
+                    <p><span class="text-white">New Feature:</span>&nbsp;&nbsp;&nbsp;All Finviz Members Now Get Real-Time Earnings Data</p>
+            </div>
+            <a title="Read More" href="/blog/introducing-real-time-earnings-on-finviz-results-as-they-arrive/" class="inline-flex items-center justify-center rounded-md border-none outline-none ring-gray-200 font-medium focus-visible:ring-2 dark:ring-gray-500 bg-violet-500 hover:bg-gray-200/50 dark:bg-gray-500/30 dark:text-gray-50 text-white dark:hover:bg-gray-500/50 h-7 min-w-8 px-2.5 text-2xs" onclick="window.FinvizCloseNoticeRedirect(event, 'promo-instant-earnings', this.href)">Read More</a>
+            <a title="Close" class="flex h-6 w-6 items-center justify-center" style="filter: drop-shadow(0.5px 0.5px 0px rgba(34, 38, 47, 0.8));" href="javascript:void(0)" onclick="window.FinvizCloseNotice('promo-instant-earnings');">
+                <svg width="20" height="20" class="shrink-0">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#clear"/>
+</svg>
+            </a>
+        </div>
+    </div><div class="content "><table cellpadding="0" class="fv-container is-tight"><script>(function(){(window.__fv_deferred_gtag=window.__fv_deferred_gtag||[]).push(['screener_apply_filter',{"filter":["cap","fa_div"],"value":["midover","pos"],"result_count":1298,"order_by":"-dividendyield","order":"desc","view":"Custom"}]);})();</script><tr>
+<td>
+<div id="screener-react"></div>
+<table id="filter-table-top" class="screener-groups_table-filter filter-table-filters" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td><img class="w-1.5 h-1.5" src="gfx/nic2x2.gif" alt="" border="0"></td>
+<td align="center" valign="center" width="17%" style="max-width:0">
+<script type="application/json" id="screener-presets-data">{"screeners":[],"portfolios":[],"presetsUrl":"v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026r=121\u0026c=0,1,2,3,4,5,6,75,14,67,65","canSaveScreen":true,"hasUser":false,"userId":null,"selectedId":null,"selectedType":null,"selectedName":null}</script>
+<div id="screener-presets-root" style="width:100%"><div class="relative w-full"><button class="fv-select block w-full cursor-pointer overflow-hidden bg-none! text-left" type="button"><span class="block truncate">My Presets</span><svg width="16" height="16" class="pointer-events-none block shrink-0 fill-current absolute top-1/2 right-1 -translate-y-1/2 text-muted transition-transform duration-200 motion-reduce:duration-0">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#caretDown"/>
+</svg></button></div></div></td>
+<td class="screener-groups_filter-label text-right" width="6%">
+<span class="body-combo-title" style="cursor:pointer;" data-boxover-html="&lt;div style=&#39;max-width:300px&#39;&gt;&lt;b&gt;Order by&lt;/b&gt;&lt;br&gt;Select the criteria by which the output information will be sorted. The order settings apply to all views. Use the &lt;b&gt;ascending&lt;/b&gt; and &lt;b&gt;descending&lt;/b&gt; option to invert the current order.&lt;br&gt;&lt;br&gt; TIP: In table views you can click on top of a column to sort the table by the underlying values.&lt;/div&gt;">Order by</span></td>
+<td align="left" width="20%" class="pl-1">
+<select id="orderSelect" style="width:100%;" class="body-combo-text fv-select" onchange='window.location=document.getElementById("orderSelect").value'>
+<option value="screener?v=152&f=cap_midover,fa_div_pos&o=-ticker&c=0,1,2,3,4,5,6,75,14,67,65">Ticker</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-tickersfilter&c=0,1,2,3,4,5,6,75,14,67,65">Tickers Input Filter</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-company&c=0,1,2,3,4,5,6,75,14,67,65">Company</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sector&c=0,1,2,3,4,5,6,75,14,67,65">Sector</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-industry&c=0,1,2,3,4,5,6,75,14,67,65">Industry</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-country&c=0,1,2,3,4,5,6,75,14,67,65">Country</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-index&c=0,1,2,3,4,5,6,75,14,67,65">Index</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-exchange&c=0,1,2,3,4,5,6,75,14,67,65">Exchange</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-marketcap&c=0,1,2,3,4,5,6,75,14,67,65">Market Cap.</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-pe&c=0,1,2,3,4,5,6,75,14,67,65">Price/Earnings</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-forwardpe&c=0,1,2,3,4,5,6,75,14,67,65">Forward Price/Earnings</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-peg&c=0,1,2,3,4,5,6,75,14,67,65">PEG (Price/Earnings/Growth)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-ps&c=0,1,2,3,4,5,6,75,14,67,65">Price/Sales</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-pb&c=0,1,2,3,4,5,6,75,14,67,65">Price/Book</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-pc&c=0,1,2,3,4,5,6,75,14,67,65">Price/Cash</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-pfcf&c=0,1,2,3,4,5,6,75,14,67,65">Price/Free Cash Flow</option><option selected="selected" value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Dividend Yield</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-payoutratio&c=0,1,2,3,4,5,6,75,14,67,65">Payout Ratio</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-eps&c=0,1,2,3,4,5,6,75,14,67,65">EPS (TTM)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-estq1&c=0,1,2,3,4,5,6,75,14,67,65">EPS Estimate Next Quarter</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-epsyoy&c=0,1,2,3,4,5,6,75,14,67,65">EPS Growth This Year</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-epsyoy1&c=0,1,2,3,4,5,6,75,14,67,65">EPS Growth Next Year</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-eps3years&c=0,1,2,3,4,5,6,75,14,67,65">EPS Growth Past 3 Years</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-eps5years&c=0,1,2,3,4,5,6,75,14,67,65">EPS Growth Past 5 Years</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-estltgrowth&c=0,1,2,3,4,5,6,75,14,67,65">EPS Growth Next 5 Years</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-epsqoq&c=0,1,2,3,4,5,6,75,14,67,65">EPS Growth Qtr Over Qtr</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-epsyoyttm&c=0,1,2,3,4,5,6,75,14,67,65">EPS Year Over Year TTM</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sales3years&c=0,1,2,3,4,5,6,75,14,67,65">Sales Growth Past 3 Years</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sales5years&c=0,1,2,3,4,5,6,75,14,67,65">Sales Growth Past 5 Years</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-salesqoq&c=0,1,2,3,4,5,6,75,14,67,65">Sales Growth Qtr Over Qtr</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-salesyoyttm&c=0,1,2,3,4,5,6,75,14,67,65">Sales Year Over Year TTM</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-epssurprise&c=0,1,2,3,4,5,6,75,14,67,65">EPS Surprise</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-revenuesurprise&c=0,1,2,3,4,5,6,75,14,67,65">Revenue Surprise</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sharesoutstanding2&c=0,1,2,3,4,5,6,75,14,67,65">Shares Outstanding</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sharesfloat&c=0,1,2,3,4,5,6,75,14,67,65">Shares Float</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-floatoutstandingpct&c=0,1,2,3,4,5,6,75,14,67,65">Float/Outstanding</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-insiderown&c=0,1,2,3,4,5,6,75,14,67,65">Insider Ownership</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-insidertrans&c=0,1,2,3,4,5,6,75,14,67,65">Insider Transactions</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-instown&c=0,1,2,3,4,5,6,75,14,67,65">Institutional Ownership</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-insttrans&c=0,1,2,3,4,5,6,75,14,67,65">Institutional Transactions</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-shortinterestshare&c=0,1,2,3,4,5,6,75,14,67,65">Short Interest Share</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-shortinterestratio&c=0,1,2,3,4,5,6,75,14,67,65">Short Interest Ratio</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-shortinterest&c=0,1,2,3,4,5,6,75,14,67,65">Short Interest</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-earningsdate&c=0,1,2,3,4,5,6,75,14,67,65">Earnings Date</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-news_date&c=0,1,2,3,4,5,6,75,14,67,65">Latest News</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-roa&c=0,1,2,3,4,5,6,75,14,67,65">Return on Assets</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-roe&c=0,1,2,3,4,5,6,75,14,67,65">Return on Equity</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-roi&c=0,1,2,3,4,5,6,75,14,67,65">Return on Invested Capital</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-curratio&c=0,1,2,3,4,5,6,75,14,67,65">Current Ratio</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-quickratio&c=0,1,2,3,4,5,6,75,14,67,65">Quick Ratio</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-ltdebteq&c=0,1,2,3,4,5,6,75,14,67,65">LT Debt/Equity</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-debteq&c=0,1,2,3,4,5,6,75,14,67,65">Total Debt/Equity</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-grossmargin&c=0,1,2,3,4,5,6,75,14,67,65">Gross Margin</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-opermargin&c=0,1,2,3,4,5,6,75,14,67,65">Operating Margin</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-netmargin&c=0,1,2,3,4,5,6,75,14,67,65">Net Profit Margin</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-recom&c=0,1,2,3,4,5,6,75,14,67,65">Analyst Recommendation</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf1w&c=0,1,2,3,4,5,6,75,14,67,65">Performance (Week)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf4w&c=0,1,2,3,4,5,6,75,14,67,65">Performance (Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf13w&c=0,1,2,3,4,5,6,75,14,67,65">Performance (Quarter)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf26w&c=0,1,2,3,4,5,6,75,14,67,65">Performance (Half Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perfytd&c=0,1,2,3,4,5,6,75,14,67,65">Performance (Year To Date)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf52w&c=0,1,2,3,4,5,6,75,14,67,65">Performance (Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf3y&c=0,1,2,3,4,5,6,75,14,67,65">Performance (3 Years)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf5y&c=0,1,2,3,4,5,6,75,14,67,65">Performance (5 Years)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-perf10y&c=0,1,2,3,4,5,6,75,14,67,65">Performance (10 Years)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-beta&c=0,1,2,3,4,5,6,75,14,67,65">Beta</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-averagetruerange&c=0,1,2,3,4,5,6,75,14,67,65">Average True Range</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-volatility1w&c=0,1,2,3,4,5,6,75,14,67,65">Volatility (Week)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-volatility4w&c=0,1,2,3,4,5,6,75,14,67,65">Volatility (Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sma20&c=0,1,2,3,4,5,6,75,14,67,65">20-Day SMA (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sma50&c=0,1,2,3,4,5,6,75,14,67,65">50-Day SMA (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sma200&c=0,1,2,3,4,5,6,75,14,67,65">200-Day SMA (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-high50d&c=0,1,2,3,4,5,6,75,14,67,65">50-Day High (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-low50d&c=0,1,2,3,4,5,6,75,14,67,65">50-Day Low (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-high52w&c=0,1,2,3,4,5,6,75,14,67,65">52-Week High (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-low52w&c=0,1,2,3,4,5,6,75,14,67,65">52-Week Low (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-52wrange&c=0,1,2,3,4,5,6,75,14,67,65">52-Week Range</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-highat&c=0,1,2,3,4,5,6,75,14,67,65">All-Time High (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-lowat&c=0,1,2,3,4,5,6,75,14,67,65">All-Time Low (Relative)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-rsi&c=0,1,2,3,4,5,6,75,14,67,65">Relative Strength Index (14)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-averagevolume&c=0,1,2,3,4,5,6,75,14,67,65">Average Volume (3 Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-relativevolume&c=0,1,2,3,4,5,6,75,14,67,65">Relative Volume</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-change&c=0,1,2,3,4,5,6,75,14,67,65">Change %</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-changeopen&c=0,1,2,3,4,5,6,75,14,67,65">Change from Open %</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-gap&c=0,1,2,3,4,5,6,75,14,67,65">Gap</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-volume&c=0,1,2,3,4,5,6,75,14,67,65">Volume</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-candlestick&c=0,1,2,3,4,5,6,75,14,67,65">Candlestick</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-open&c=0,1,2,3,4,5,6,75,14,67,65">Open</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-high&c=0,1,2,3,4,5,6,75,14,67,65">High</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-low&c=0,1,2,3,4,5,6,75,14,67,65">Low</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-price&c=0,1,2,3,4,5,6,75,14,67,65">Price</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-prevclose&c=0,1,2,3,4,5,6,75,14,67,65">Previous Close</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-targetprice&c=0,1,2,3,4,5,6,75,14,67,65">Target Price</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-ipodate&c=0,1,2,3,4,5,6,75,14,67,65">IPO Date</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-book&c=0,1,2,3,4,5,6,75,14,67,65">Book Value per Share</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-cashpershare&c=0,1,2,3,4,5,6,75,14,67,65">Cash per Share</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividend&c=0,1,2,3,4,5,6,75,14,67,65">Dividend</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendexdate&c=0,1,2,3,4,5,6,75,14,67,65">Dividend Ex-Date</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendttm&c=0,1,2,3,4,5,6,75,14,67,65">Dividend TTM</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividend1y&c=0,1,2,3,4,5,6,75,14,67,65">Dividend Growth (1 Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividend3y&c=0,1,2,3,4,5,6,75,14,67,65">Dividend Growth (3 Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividend5y&c=0,1,2,3,4,5,6,75,14,67,65">Dividend Growth (5 Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-employees&c=0,1,2,3,4,5,6,75,14,67,65">Employees</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-income&c=0,1,2,3,4,5,6,75,14,67,65">Income</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-sales&c=0,1,2,3,4,5,6,75,14,67,65">Sales</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-enterpriseValue&c=0,1,2,3,4,5,6,75,14,67,65">Enterprise Value</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-evebitda&c=0,1,2,3,4,5,6,75,14,67,65">EV/EBITDA</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-evsales&c=0,1,2,3,4,5,6,75,14,67,65">EV/Sales</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-optionable&c=0,1,2,3,4,5,6,75,14,67,65">Optionable</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-shortable&c=0,1,2,3,4,5,6,75,14,67,65">Shortable</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-newsurl&c=0,1,2,3,4,5,6,75,14,67,65">News URL</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-newstitle&c=0,1,2,3,4,5,6,75,14,67,65">News Title</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-newstime&c=0,1,2,3,4,5,6,75,14,67,65">News Time</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-wiimdailydigest&c=0,1,2,3,4,5,6,75,14,67,65">Daily Digest</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.category&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Single Category</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.tags&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Tags</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.totalholdings&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Total Holdings</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.assetsundermanagement&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Assets Under Management</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netflows1month&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Fund Flows (1 Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netflows1monthpct&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Fund Flows% (1 Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netflows3month&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Fund Flows (3 Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netflows3monthpct&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Fund Flows% (3 Month)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netflowsytd&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Fund Flows (YTD)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netflowsytdpct&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Fund Flows% (YTD)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.return1year&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Annualized Return (1 Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.return3year&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Annualized Return (3 Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.return5year&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Annualized Return (5 Year)</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.netexpenseratio&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Net Expense Ratio</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.activepassive&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Active Passive</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.assettype&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Asset Type</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.etftype&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Type</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.sectortheme&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Sector/Theme</option><option value="screener?v=152&f=cap_midover,fa_div_pos&o=-e.linkedindexname&c=0,1,2,3,4,5,6,75,14,67,65">ETF - Tracked Index</option></select>
+</td>
+<td align="left" width="6%" class="pl-1">
+<select id="orderDirSelect" style="width: 100%;" class="body-combo-text fv-select" onchange='window.location=document.getElementById("orderDirSelect").value'>
+<option value="screener?v=152&f=cap_midover,fa_div_pos&o=dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Asc</option><option selected="selected" value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Desc</option></select>
+</td>
+<td class="screener-groups_filter-label text-right" width="6%">
+<span class="body-combo-title" style="cursor:pointer;" data-boxover-html="&lt;div style=&#39;max-width:300px&#39;&gt;&lt;b&gt;Signal&lt;/b&gt;&lt;br&gt;You can screen the stocks by signal - an event, by which traders usually enter or exit positions.&lt;/div&gt;">Signal</span></td>
+<td align="left" width="15%" class="pl-1">
+<select id="signalSelect" style="width: 100%;"  class="fv-select body-combo-text" onchange='window.location=document.getElementById("signalSelect").value'>
+<option selected="selected" value="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">None (all stocks)</option><option value="screener?v=152&s=ta_topgainers&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Top Gainers</option><option value="screener?v=152&s=ta_toplosers&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Top Losers</option><option value="screener?v=152&s=ta_newhigh&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">New High</option><option value="screener?v=152&s=ta_newlow&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">New Low</option><option value="screener?v=152&s=ta_mostvolatile&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Most Volatile</option><option value="screener?v=152&s=ta_mostactive&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Most Active</option><option value="screener?v=152&s=ta_unusualvolume&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Unusual Volume</option><option value="screener?v=152&s=ta_overbought&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Overbought</option><option value="screener?v=152&s=ta_oversold&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Oversold</option><option value="screener?v=152&s=n_downgrades&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Downgrades</option><option value="screener?v=152&s=n_upgrades&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Upgrades</option><option value="screener?v=152&s=n_earningsbefore&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Earnings Before</option><option value="screener?v=152&s=n_earningsafter&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Earnings After</option><option value="screener?v=152&s=it_latestbuys&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Recent Insider Buying</option><option value="screener?v=152&s=it_latestsales&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Recent Insider Selling</option><option value="screener?v=152&s=n_majornews&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Major News</option><option value="screener?v=152&s=ta_p_horizontal&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Horizontal S/R</option><option value="screener?v=152&s=ta_p_tlresistance&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">TL Resistance</option><option value="screener?v=152&s=ta_p_tlsupport&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">TL Support</option><option value="screener?v=152&s=ta_p_wedgeup&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Wedge Up</option><option value="screener?v=152&s=ta_p_wedgedown&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Wedge Down</option><option value="screener?v=152&s=ta_p_wedgeresistance&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Triangle Ascending</option><option value="screener?v=152&s=ta_p_wedgesupport&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Triangle Descending</option><option value="screener?v=152&s=ta_p_wedge&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Wedge</option><option value="screener?v=152&s=ta_p_channelup&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Channel Up</option><option value="screener?v=152&s=ta_p_channeldown&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Channel Down</option><option value="screener?v=152&s=ta_p_channel&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Channel</option><option value="screener?v=152&s=ta_p_doubletop&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Double Top</option><option value="screener?v=152&s=ta_p_doublebottom&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Double Bottom</option><option value="screener?v=152&s=ta_p_multipletop&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Multiple Top</option><option value="screener?v=152&s=ta_p_multiplebottom&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Multiple Bottom</option><option value="screener?v=152&s=ta_p_headandshoulders&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Head & Shoulders</option><option value="screener?v=152&s=ta_p_headandshouldersinv&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65">Head & Shoulders Inverse</option></select>
+</td>
+<td class="screener-groups_filter-label text-right" width="6%">
+<span class="body-combo-title" style="cursor:pointer;" data-boxover-html="&lt;div style=&#39;max-width:300px&#39;&gt;&lt;b&gt;Tickers&lt;/b&gt;&lt;br&gt;To screen through a selected set of stocks, you can enter one or more tickers directly, such as &#39;MSFT,GOOG,AAPL&#39;. The screening process will run only on the specified stocks. No input ticker(s) equals all stocks. The &lt;b&gt;open in screener&lt;/b&gt; option in the &lt;b&gt;Search&lt;/b&gt;, will copy the listed tickers to the screener&#39;s ticker box automatically.&lt;/div&gt;">Tickers</span></td>
+<td align="left" width="24%" class="pl-1">
+<table width="100%" cellpadding="0" cellspacing="0" style="table-layout:fixed;">
+<tr>
+<td align="left" width="100%">
+<input id="tickersInput" class="fv-input body-combo-text" style="width:100%" value="" type="text" onkeypress="if(event.keyCode==13){(window.FinvizScreenerNavigateWithCurrentMapDisplayOptions||function(q){var params=new URLSearchParams(q);var currentParams=new URLSearchParams(window.location.search);['show_etf','show_industry','preset_order','st','show_wiim','equal_size'].forEach(function(key){var value=currentParams.get(key);if(value===null){params.delete(key)}else{params.set(key,value)}});window.location='screener?'+params.toString()})('v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026c=0,1,2,3,4,5,6,75,14,67,65\u0026t=' + window.FLibs.getSanitizedTicker(document.getElementById('tickersInput').value, true))}">
+</td>
+</tr>
+</table>
+</td>
+<td class="pl-1">
+<button data-boxover-text="Submit tickers" class="screener-combo-button fv-button screener_button is-arrow" style="cursor:pointer" onclick="(window.FinvizScreenerNavigateWithCurrentMapDisplayOptions||function(q){var params=new URLSearchParams(q);var currentParams=new URLSearchParams(window.location.search);['show_etf','show_industry','preset_order','st','show_wiim','equal_size'].forEach(function(key){var value=currentParams.get(key);if(value===null){params.delete(key)}else{params.set(key,value)}});window.location='screener?'+params.toString()})('v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026c=0,1,2,3,4,5,6,75,14,67,65\u0026t=' + tickersInput.value)"/>
+    <svg width="16" height="16" class="-mx-1">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#chevronRight"/>
+</svg>
+</button></td>
+<td align="left" valign="center" class="pl-2"><a href="screener?v=151&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-combo-button fv-button is-small is-border screener_button is-active" data-boxover-html="&lt;div style=&#39;max-width:300px&#39;&gt;&lt;b&gt;Filters&lt;/b&gt;&lt;br&gt;To optimize the screening by various stock-related criteria, you can use one or more &lt;b&gt;Filters&lt;/b&gt;.&lt;/div&gt;">Filters <svg width="16" height="16" class="ml-1 -mr-px">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#caretDown"/>
+</svg></a></td>
+<td><img class="w-1.5 h-1.5" src="gfx/nic2x2.gif" alt="" border="0"></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td>
+<div id="screener-content">
+<table id="screener-views-table" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="100%">
+<table width="100%" cellpadding="0" cellspacing="0" class="screener-view-table screener-view-switch">
+<tr>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=112&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Overview</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=122&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Valuation</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=162&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Financial</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=132&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Ownership</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=142&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Performance</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=172&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Technical</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=182&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">ETF</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=192&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">ETF Perf</a></td>
+<td class="screener-view-button is-screener is-active" style="cursor:pointer;"><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Custom</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=212&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Charts</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=412&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Tickers</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=312&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Basic</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=352&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">TA</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=322&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">News</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=342&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Snapshot</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="screener?v=712&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65">Maps</a></td>
+<td class="screener-view-button is-screener " style="cursor:pointer;"><a href="javascript:window.openEliteFeaturesDialog?.('stats', event)">Stats</a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr><td width="100%"><img src="gfx/nic2x2.gif" style="display:block;width:2px;height:12px" alt="" border="0"></td></tr>
+<tr>
+<td width="100%">
+<div class="relative w-full min-h-6"><div class="absolute bottom-0 left-0 right-0 top-0 flex justify-between items-center gap-x-6">
+<div id="screener-total" class="count-text whitespace-nowrap">#121 / 1298 Total</div>
+<div class="flex grow items-center gap-x-4">
+<div data-ssr-island="ScreenerToolbar" id="ssr-island-screener-toolbar" class="grow min-w-0"><div class="flex grow items-center gap-x-6"><div class="flex items-center gap-4"><button type="button" aria-label="Auto refresh: Off" data-testid="action-bar-refresh-button" aria-expanded="false" aria-haspopup="menu" id="_R_15_" class="group/button flex items-center justify-center font-medium focus:outline-none border border-transparent dark:disabled:hover:bg-transparent disabled:hover:bg-transparent hover:bg-gray-200/30 disabled:text-gray-400 disabled:hover:text-gray-400 dark:hover:bg-gray-500/30 px-1.5 text-2xs h-6 min-w-6 rounded-md shrink-0 whitespace-nowrap focus-visible:ring-2 ring-gray-200 dark:ring-gray-500 text-default"><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#refresh"></use></svg></span><span class="grow text-left ml-1.5 mr-1.5">Off</span><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#chevronDown"></use></svg></span></button></div><div class="ml-auto flex items-center gap-1.5"><button type="button" data-testid="screener-add-to-button" aria-expanded="false" aria-haspopup="menu" id="_R_5am_" class="group/button flex items-center justify-center font-medium focus:outline-none border border-transparent active:bg-gray-200/90 disabled:bg-gray-200/30 disabled:text-gray-400 disabled:hover:bg-gray-200/30 disabled:hover:text-gray-400 dark:active:bg-gray-500/90 dark:disabled:bg-gray-500/30 dark:disabled:text-gray-300 dark:disabled:hover:bg-gray-500/30 dark:disabled:hover:text-gray-300 bg-gray-200/30 hover:bg-gray-200/50 dark:bg-gray-500/30 dark:hover:bg-gray-500/50 px-1.5 text-2xs h-6 min-w-6 rounded-md shrink-0 whitespace-nowrap focus-visible:ring-2 ring-gray-200 dark:ring-gray-500"><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#starOutlined"></use></svg></span><span class="grow text-left ml-1.5 mr-1.5">Add to</span><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#chevronDown"></use></svg></span></button><button type="button" data-testid="screener-open-in-compare-link" class="group/button flex items-center justify-center font-medium focus:outline-none border border-transparent active:bg-gray-200/90 disabled:bg-gray-200/30 disabled:text-gray-400 disabled:hover:bg-gray-200/30 disabled:hover:text-gray-400 dark:active:bg-gray-500/90 dark:disabled:bg-gray-500/30 dark:disabled:text-gray-300 dark:disabled:hover:bg-gray-500/30 dark:disabled:hover:text-gray-300 bg-gray-200/30 hover:bg-gray-200/50 dark:bg-gray-500/30 dark:hover:bg-gray-500/50 px-1.5 text-2xs h-6 min-w-6 rounded-md shrink-0 whitespace-nowrap focus-visible:ring-2 ring-gray-200 dark:ring-gray-500"><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#compareCrosses"></use></svg></span><span class="grow text-left ml-1.5">Compare</span></button><button type="button" data-testid="screener-create-alert-link" class="group/button flex items-center justify-center font-medium focus:outline-none border border-transparent active:bg-gray-200/90 disabled:bg-gray-200/30 disabled:text-gray-400 disabled:hover:bg-gray-200/30 disabled:hover:text-gray-400 dark:active:bg-gray-500/90 dark:disabled:bg-gray-500/30 dark:disabled:text-gray-300 dark:disabled:hover:bg-gray-500/30 dark:disabled:hover:text-gray-300 bg-gray-200/30 hover:bg-gray-200/50 dark:bg-gray-500/30 dark:hover:bg-gray-500/50 px-1.5 text-2xs h-6 min-w-6 rounded-md shrink-0 whitespace-nowrap focus-visible:ring-2 ring-gray-200 dark:ring-gray-500"><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#notificationAdd"></use></svg></span><span class="grow text-left ml-1.5">Set Alert</span></button><button type="button" aria-label="Export" data-testid="action-bar-export-button" aria-expanded="false" aria-haspopup="menu" id="_R_b6_" class="group/button flex items-center justify-center font-medium focus:outline-none border border-transparent active:bg-gray-200/90 disabled:bg-gray-200/30 disabled:text-gray-400 disabled:hover:bg-gray-200/30 disabled:hover:text-gray-400 dark:active:bg-gray-500/90 dark:disabled:bg-gray-500/30 dark:disabled:text-gray-300 dark:disabled:hover:bg-gray-500/30 dark:disabled:hover:text-gray-300 bg-gray-200/30 hover:bg-gray-200/50 dark:bg-gray-500/30 dark:hover:bg-gray-500/50 px-1.5 text-2xs h-6 min-w-6 rounded-md shrink-0 whitespace-nowrap focus-visible:ring-2 ring-gray-200 dark:ring-gray-500"><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#download"></use></svg></span><span class="grow text-left ml-1.5 mr-1.5">Export</span><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#chevronDown"></use></svg></span></button><button type="button" aria-label="Customize" data-testid="customize-dialog-open" class="group/button flex items-center justify-center font-medium focus:outline-none border border-transparent active:bg-gray-200/90 disabled:bg-gray-200/30 disabled:text-gray-400 disabled:hover:bg-gray-200/30 disabled:hover:text-gray-400 dark:active:bg-gray-500/90 dark:disabled:bg-gray-500/30 dark:disabled:text-gray-300 dark:disabled:hover:bg-gray-500/30 dark:disabled:hover:text-gray-300 bg-gray-200/30 hover:bg-gray-200/50 dark:bg-gray-500/30 dark:hover:bg-gray-500/50 h-6 w-6 rounded-md shrink-0 whitespace-nowrap justify-center focus-visible:ring-2 ring-gray-200 dark:ring-gray-500"><span class="flex w-3 items-center justify-center"><svg class="pointer-events-none block shrink-0 fill-current" width="1rem" height="1rem"><use href="/assets/dist-icons/icons.4ede4ca4.svg#settings"></use></svg></span></button></div></div></div><script type="application/json" data-ssr-props="ssr-island-screener-toolbar">{"kind":"table","refresh":[{"label":"3min","href":"/screener?v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026r=121\u0026ar=180\u0026c=0,1,2,3,4,5,6,75,14,67,65","isSelected":false},{"label":"Off","href":"/screener?v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026r=121\u0026c=0,1,2,3,4,5,6,75,14,67,65","isSelected":true}],"chips":[],"template":null,"technicalAnalysis":null,"timeframeBar":null,"chartSettings":null,"actions":{"count":1298,"query":"v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026r=121\u0026c=0,1,2,3,4,5,6,75,14,67,65","alertHref":"/create_alert_screener?v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026r=121\u0026c=0,1,2,3,4,5,6,75,14,67,65","csvHref":"/export/screener?v=152\u0026f=cap_midover,fa_div_pos\u0026o=-dividendyield\u0026r=121\u0026c=0,1,2,3,4,5,6,75,14,67,65","hasWatchlist":false},"hasCustomize":true,"hasUserPremium":false,"hasUser":false,"hasRedesignEnabled":true,"iconSprites":{"icons":"icons.4ede4ca4.svg","icons_blogs":"icons_blogs.37b5403f.svg","icons_calendar":"icons_calendar.5a6f733b.svg","icons_careers":"icons_careers.8c558ad5.svg","icons_chart-layouts":"icons_chart-layouts.6d5730f1.svg","icons_chart-tools":"icons_chart-tools.7c4a77ba.svg","icons_chart-types":"icons_chart-types.68df96b3.svg","icons_companies":"icons_companies.d6ef954b.svg","icons_crypto":"icons_crypto.3f55894f.svg","icons_news-content":"icons_news-content.5b347035.svg","icons_news":"icons_news.24dc76d2.svg","icons_screener":"icons_screener.e3e3b175.svg","icons_signals":"icons_signals.0e727212.svg","icons_social":"icons_social.629cf97e.svg"}}</script><script src="/assets/dist-legacy/1571.v1.9d0a223f.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/182.v1.453341b4.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/ssr_islands.v1.c5429e94.js" onerror="window.handleScriptNotLoaded(this)" defer></script><div id="screener-page-select" class="flex justify-center items-center gap-1"><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=101&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-combo-button screener_button fv-button is-arrow" onclick="trackPagination('top')"><svg width="16" height="16">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#arrowBackward"/>
+</svg></a><select id="pageSelect"  class="pages-combo fv-select" aria-label="Page" title="Page" onchange='trackPagination("top");url="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=123456&c=0,1,2,3,4,5,6,75,14,67,65";row="r=" + document.getElementById("pageSelect").value;url=url.replace(/r=123456/,row);window.location=url;'>
+<option value=1>1 / 65</option><option value=21>2 / 65</option><option value=41>3 / 65</option><option value=61>4 / 65</option><option value=81>5 / 65</option><option value=101>6 / 65</option><option selected="selected" value=121>7 / 65</option><option value=141>8 / 65</option><option value=161>9 / 65</option><option value=181>10 / 65</option><option value=201>11 / 65</option><option value=221>12 / 65</option><option value=241>13 / 65</option><option value=261>14 / 65</option><option value=281>15 / 65</option><option value=301>16 / 65</option><option value=321>17 / 65</option><option value=341>18 / 65</option><option value=361>19 / 65</option><option value=381>20 / 65</option><option value=401>21 / 65</option><option value=421>22 / 65</option><option value=441>23 / 65</option><option value=461>24 / 65</option><option value=481>25 / 65</option><option value=501>26 / 65</option><option value=521>27 / 65</option><option value=541>28 / 65</option><option value=561>29 / 65</option><option value=581>30 / 65</option><option value=601>31 / 65</option><option value=621>32 / 65</option><option value=641>33 / 65</option><option value=661>34 / 65</option><option value=681>35 / 65</option><option value=701>36 / 65</option><option value=721>37 / 65</option><option value=741>38 / 65</option><option value=761>39 / 65</option><option value=781>40 / 65</option><option value=801>41 / 65</option><option value=821>42 / 65</option><option value=841>43 / 65</option><option value=861>44 / 65</option><option value=881>45 / 65</option><option value=901>46 / 65</option><option value=921>47 / 65</option><option value=941>48 / 65</option><option value=961>49 / 65</option><option value=981>50 / 65</option><option value=1001>51 / 65</option><option value=1021>52 / 65</option><option value=1041>53 / 65</option><option value=1061>54 / 65</option><option value=1081>55 / 65</option><option value=1101>56 / 65</option><option value=1121>57 / 65</option><option value=1141>58 / 65</option><option value=1161>59 / 65</option><option value=1181>60 / 65</option><option value=1201>61 / 65</option><option value=1221>62 / 65</option><option value=1241>63 / 65</option><option value=1261>64 / 65</option><option value=1281>65 / 65</option></select>
+<a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=141&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-combo-button screener_button fv-button is-arrow" onclick="trackPagination('top')"><svg width="16" height="16">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#arrowForward"/>
+</svg></a></div></div></div></div></td>
+</tr>
+<tr><td width="100%" colspan="30"><img src="gfx/nic2x2.gif" style="display:block;width:2px;height:8px" alt="" border="0"></td></tr>
+<tr id="screener-table"><td><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+<td>
+<table class="styled-table-new is-rounded is-tabular-nums w-full screener_table">
+<thead>
+<tr align="center" valign="middle">
+<th class="table-header is-static w-9 cursor-default" align="right">No.</th>
+<th class="table-header cursor-pointer" align="left" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-ticker&c=0,1,2,3,4,5,6,75,14,67,65'">Ticker</th>
+<th class="table-header cursor-pointer" align="left" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-company&c=0,1,2,3,4,5,6,75,14,67,65'">Company</th>
+<th class="table-header cursor-pointer" align="left" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-sector&c=0,1,2,3,4,5,6,75,14,67,65'">Sector</th>
+<th class="table-header cursor-pointer" align="left" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-industry&c=0,1,2,3,4,5,6,75,14,67,65'">Industry</th>
+<th class="table-header cursor-pointer" align="left" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-country&c=0,1,2,3,4,5,6,75,14,67,65'">Country</th>
+<th class="table-header cursor-pointer" align="right" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-marketcap&c=0,1,2,3,4,5,6,75,14,67,65'">Market Cap</th>
+<th class="table-header cursor-pointer" align="right" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-dividend&c=0,1,2,3,4,5,6,75,14,67,65'">Dividend</th>
+<th class="table-header cursor-pointer is-selected is-descending" align="right" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=dividendyield&c=0,1,2,3,4,5,6,75,14,67,65'"><svg width="16" height="16" class="inline-block -mt-[5px] -mb-0.5 rotate-180">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#arrowUpLong"/>
+</svg>Dividend</th>
+<th class="table-header cursor-pointer" align="right" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-volume&c=0,1,2,3,4,5,6,75,14,67,65'">Volume</th>
+<th class="table-header cursor-pointer" align="right" onclick="window.location='screener?v=152&f=cap_midover,fa_div_pos&o=-price&c=0,1,2,3,4,5,6,75,14,67,65'">Price</th>
+</thead>
+<tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=RDN&ty=c&p=d&b=1" ">121</a></td><td height="10" align="left"data-boxover-ticker="RDN" data-boxover-company="Radian Group Inc" data-boxover-industry="Insurance - Specialty" data-boxover-country="USA" data-boxover-value="4.51B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=RDN&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #003C63; --logo-url: url('https://logo.finviz.com/RDN.svg')"><img src="https://logo.finviz.com/RDN.svg" alt="RDN logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>R</span></a><a href="stock?t=RDN&ty=c&p=d&b=1" class="tab-link">RDN</a></span></td><td height="10" align="left"><a href="stock?t=RDN&ty=c&p=d&b=1" ">Radian Group Inc</a></td><td height="10" align="left"><a href="stock?t=RDN&ty=c&p=d&b=1" ">Financial</a></td><td height="10" align="left"><a href="stock?t=RDN&ty=c&p=d&b=1" ">Insurance - Specialty</a></td><td height="10" align="left"><a href="stock?t=RDN&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=RDN&ty=c&p=d&b=1" ">4.51B</a></td><td height="10" align="right"><a href="stock?t=RDN&ty=c&p=d&b=1" ">2.10</a></td><td height="10" align="right"><a href="stock?t=RDN&ty=c&p=d&b=1" ">6.17%</a></td><td height="10" align="right"><a href="stock?t=RDN&ty=c&p=d&b=1" ">447,258</a></td><td height="10" align="right"data-boxover-ticker="RDN" data-boxover-company="Radian Group Inc" data-boxover-industry="Insurance - Specialty" data-boxover-country="USA" data-boxover-value="4.51B"><a href="stock?t=RDN&ty=c&p=d&b=1" "><span class="color-text is-positive">34.12</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=MTN&ty=c&p=d&b=1" ">122</a></td><td height="10" align="left"data-boxover-ticker="MTN" data-boxover-company="Vail Resorts Inc" data-boxover-industry="Resorts &amp; Casinos" data-boxover-country="USA" data-boxover-value="5.16B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=MTN&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #08090D; --logo-url: url('https://logo.finviz.com/MTN.svg')"><img src="https://logo.finviz.com/MTN.svg" alt="MTN logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>M</span></a><a href="stock?t=MTN&ty=c&p=d&b=1" class="tab-link">MTN</a></span></td><td height="10" align="left"><a href="stock?t=MTN&ty=c&p=d&b=1" ">Vail Resorts Inc</a></td><td height="10" align="left"><a href="stock?t=MTN&ty=c&p=d&b=1" ">Consumer Cyclical</a></td><td height="10" align="left"><a href="stock?t=MTN&ty=c&p=d&b=1" ">Resorts & Casinos</a></td><td height="10" align="left"><a href="stock?t=MTN&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=MTN&ty=c&p=d&b=1" ">5.16B</a></td><td height="10" align="right"><a href="stock?t=MTN&ty=c&p=d&b=1" ">8.90</a></td><td height="10" align="right"><a href="stock?t=MTN&ty=c&p=d&b=1" ">6.15%</a></td><td height="10" align="right"><a href="stock?t=MTN&ty=c&p=d&b=1" ">73,113</a></td><td height="10" align="right"data-boxover-ticker="MTN" data-boxover-company="Vail Resorts Inc" data-boxover-industry="Resorts &amp; Casinos" data-boxover-country="USA" data-boxover-value="5.16B"><a href="stock?t=MTN&ty=c&p=d&b=1" "><span class="color-text is-positive">144.76</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=SNY&ty=c&p=d&b=1" ">123</a></td><td height="10" align="left"data-boxover-ticker="SNY" data-boxover-company="Sanofi ADR" data-boxover-industry="Drug Manufacturers - General" data-boxover-country="France" data-boxover-value="94.53B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=SNY&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #444492; --logo-url: url('https://logo.finviz.com/SNY.svg')"><img src="https://logo.finviz.com/SNY.svg" alt="SNY logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>S</span></a><a href="stock?t=SNY&ty=c&p=d&b=1" class="tab-link">SNY</a></span></td><td height="10" align="left"><a href="stock?t=SNY&ty=c&p=d&b=1" ">Sanofi ADR</a></td><td height="10" align="left"><a href="stock?t=SNY&ty=c&p=d&b=1" ">Healthcare</a></td><td height="10" align="left"><a href="stock?t=SNY&ty=c&p=d&b=1" ">Drug Manufacturers - General</a></td><td height="10" align="left"><a href="stock?t=SNY&ty=c&p=d&b=1" ">France</a></td><td height="10" align="right"><a href="stock?t=SNY&ty=c&p=d&b=1" ">94.53B</a></td><td height="10" align="right"><a href="stock?t=SNY&ty=c&p=d&b=1" ">2.43</a></td><td height="10" align="right"><a href="stock?t=SNY&ty=c&p=d&b=1" ">6.13%</a></td><td height="10" align="right"><a href="stock?t=SNY&ty=c&p=d&b=1" ">960,583</a></td><td height="10" align="right"data-boxover-ticker="SNY" data-boxover-company="Sanofi ADR" data-boxover-industry="Drug Manufacturers - General" data-boxover-country="France" data-boxover-value="94.53B"><a href="stock?t=SNY&ty=c&p=d&b=1" "><span class="color-text is-positive">39.66</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=CLX&ty=c&p=d&b=1" ">124</a></td><td height="10" align="left"data-boxover-ticker="CLX" data-boxover-company="Clorox Co" data-boxover-industry="Household &amp; Personal Products" data-boxover-country="USA" data-boxover-value="10.11B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=CLX&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/CLX.svg')"><img src="https://logo.finviz.com/CLX.svg" alt="CLX logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>C</span></a><a href="stock?t=CLX&ty=c&p=d&b=1" class="tab-link">CLX</a></span></td><td height="10" align="left"><a href="stock?t=CLX&ty=c&p=d&b=1" ">Clorox Co</a></td><td height="10" align="left"><a href="stock?t=CLX&ty=c&p=d&b=1" ">Consumer Defensive</a></td><td height="10" align="left"><a href="stock?t=CLX&ty=c&p=d&b=1" ">Household & Personal Products</a></td><td height="10" align="left"><a href="stock?t=CLX&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=CLX&ty=c&p=d&b=1" ">10.11B</a></td><td height="10" align="right"><a href="stock?t=CLX&ty=c&p=d&b=1" ">5.12</a></td><td height="10" align="right"><a href="stock?t=CLX&ty=c&p=d&b=1" ">6.13%</a></td><td height="10" align="right"><a href="stock?t=CLX&ty=c&p=d&b=1" ">631,728</a></td><td height="10" align="right"data-boxover-ticker="CLX" data-boxover-company="Clorox Co" data-boxover-industry="Household &amp; Personal Products" data-boxover-country="USA" data-boxover-value="10.11B"><a href="stock?t=CLX&ty=c&p=d&b=1" "><span class="color-text is-positive">83.57</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=LINE&ty=c&p=d&b=1" ">125</a></td><td height="10" align="left"data-boxover-ticker="LINE" data-boxover-company="Lineage Inc" data-boxover-industry="REIT - Industrial" data-boxover-country="USA" data-boxover-value="7.94B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=LINE&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/LINE.svg')"><img src="https://logo.finviz.com/LINE.svg" alt="LINE logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>L</span></a><a href="stock?t=LINE&ty=c&p=d&b=1" class="tab-link">LINE</a></span></td><td height="10" align="left"><a href="stock?t=LINE&ty=c&p=d&b=1" ">Lineage Inc</a></td><td height="10" align="left"><a href="stock?t=LINE&ty=c&p=d&b=1" ">Real Estate</a></td><td height="10" align="left"><a href="stock?t=LINE&ty=c&p=d&b=1" ">REIT - Industrial</a></td><td height="10" align="left"><a href="stock?t=LINE&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=LINE&ty=c&p=d&b=1" ">7.94B</a></td><td height="10" align="right"><a href="stock?t=LINE&ty=c&p=d&b=1" ">2.13</a></td><td height="10" align="right"><a href="stock?t=LINE&ty=c&p=d&b=1" ">6.11%</a></td><td height="10" align="right"><a href="stock?t=LINE&ty=c&p=d&b=1" ">143,704</a></td><td height="10" align="right"data-boxover-ticker="LINE" data-boxover-company="Lineage Inc" data-boxover-industry="REIT - Industrial" data-boxover-country="USA" data-boxover-value="7.94B"><a href="stock?t=LINE&ty=c&p=d&b=1" "><span class="color-text is-negative">34.88</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">126</a></td><td height="10" align="left"data-boxover-ticker="KNTK" data-boxover-company="Kinetik Holdings Inc" data-boxover-industry="Oil &amp; Gas Midstream" data-boxover-country="USA" data-boxover-value="8.68B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=KNTK&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/KNTK.svg')"><img src="https://logo.finviz.com/KNTK.svg" alt="KNTK logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>K</span></a><a href="stock?t=KNTK&ty=c&p=d&b=1" class="tab-link">KNTK</a></span></td><td height="10" align="left"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">Kinetik Holdings Inc</a></td><td height="10" align="left"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">Energy</a></td><td height="10" align="left"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">Oil & Gas Midstream</a></td><td height="10" align="left"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">8.68B</a></td><td height="10" align="right"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">3.25</a></td><td height="10" align="right"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">6.08%</a></td><td height="10" align="right"><a href="stock?t=KNTK&ty=c&p=d&b=1" ">69,005</a></td><td height="10" align="right"data-boxover-ticker="KNTK" data-boxover-company="Kinetik Holdings Inc" data-boxover-industry="Oil &amp; Gas Midstream" data-boxover-country="USA" data-boxover-value="8.68B"><a href="stock?t=KNTK&ty=c&p=d&b=1" "><span class="color-text is-positive">53.43</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=EPD&ty=c&p=d&b=1" ">127</a></td><td height="10" align="left"data-boxover-ticker="EPD" data-boxover-company="Enterprise Products Partners L P" data-boxover-industry="Oil &amp; Gas Midstream" data-boxover-country="USA" data-boxover-value="79.99B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=EPD&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #002D62; --logo-url: url('https://logo.finviz.com/EPD.svg')"><img src="https://logo.finviz.com/EPD.svg" alt="EPD logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>E</span></a><a href="stock?t=EPD&ty=c&p=d&b=1" class="tab-link">EPD</a></span></td><td height="10" align="left"><a href="stock?t=EPD&ty=c&p=d&b=1" ">Enterprise Products Partners L P</a></td><td height="10" align="left"><a href="stock?t=EPD&ty=c&p=d&b=1" ">Energy</a></td><td height="10" align="left"><a href="stock?t=EPD&ty=c&p=d&b=1" ">Oil & Gas Midstream</a></td><td height="10" align="left"><a href="stock?t=EPD&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=EPD&ty=c&p=d&b=1" ">79.99B</a></td><td height="10" align="right"><a href="stock?t=EPD&ty=c&p=d&b=1" ">2.24</a></td><td height="10" align="right"><a href="stock?t=EPD&ty=c&p=d&b=1" ">6.06%</a></td><td height="10" align="right"><a href="stock?t=EPD&ty=c&p=d&b=1" ">488,706</a></td><td height="10" align="right"data-boxover-ticker="EPD" data-boxover-company="Enterprise Products Partners L P" data-boxover-industry="Oil &amp; Gas Midstream" data-boxover-country="USA" data-boxover-value="79.99B"><a href="stock?t=EPD&ty=c&p=d&b=1" "><span class="color-text is-positive">37.04</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=FMX&ty=c&p=d&b=1" ">128</a></td><td height="10" align="left"data-boxover-ticker="FMX" data-boxover-company="Fomento Economico Mexicano SAB de CV ADR" data-boxover-industry="Beverages - Brewers" data-boxover-country="Mexico" data-boxover-value="23.89B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=FMX&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/FMX.svg')"><img src="https://logo.finviz.com/FMX.svg" alt="FMX logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>F</span></a><a href="stock?t=FMX&ty=c&p=d&b=1" class="tab-link">FMX</a></span></td><td height="10" align="left"><a href="stock?t=FMX&ty=c&p=d&b=1" ">Fomento Economico Mexicano SAB de CV ADR</a></td><td height="10" align="left"><a href="stock?t=FMX&ty=c&p=d&b=1" ">Consumer Defensive</a></td><td height="10" align="left"><a href="stock?t=FMX&ty=c&p=d&b=1" ">Beverages - Brewers</a></td><td height="10" align="left"><a href="stock?t=FMX&ty=c&p=d&b=1" ">Mexico</a></td><td height="10" align="right"><a href="stock?t=FMX&ty=c&p=d&b=1" ">23.89B</a></td><td height="10" align="right"><a href="stock?t=FMX&ty=c&p=d&b=1" ">7.17</a></td><td height="10" align="right"><a href="stock?t=FMX&ty=c&p=d&b=1" ">6.05%</a></td><td height="10" align="right"><a href="stock?t=FMX&ty=c&p=d&b=1" ">59,091</a></td><td height="10" align="right"data-boxover-ticker="FMX" data-boxover-company="Fomento Economico Mexicano SAB de CV ADR" data-boxover-industry="Beverages - Brewers" data-boxover-country="Mexico" data-boxover-value="23.89B"><a href="stock?t=FMX&ty=c&p=d&b=1" "><span class="color-text is-positive">118.55</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=CAG&ty=c&p=d&b=1" ">129</a></td><td height="10" align="left"data-boxover-ticker="CAG" data-boxover-company="Conagra Brands Inc" data-boxover-industry="Packaged Foods" data-boxover-country="USA" data-boxover-value="6.48B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=CAG&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/CAG.svg')"><img src="https://logo.finviz.com/CAG.svg" alt="CAG logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>C</span></a><a href="stock?t=CAG&ty=c&p=d&b=1" class="tab-link">CAG</a></span></td><td height="10" align="left"><a href="stock?t=CAG&ty=c&p=d&b=1" ">Conagra Brands Inc</a></td><td height="10" align="left"><a href="stock?t=CAG&ty=c&p=d&b=1" ">Consumer Defensive</a></td><td height="10" align="left"><a href="stock?t=CAG&ty=c&p=d&b=1" ">Packaged Foods</a></td><td height="10" align="left"><a href="stock?t=CAG&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=CAG&ty=c&p=d&b=1" ">6.48B</a></td><td height="10" align="right"><a href="stock?t=CAG&ty=c&p=d&b=1" ">0.82</a></td><td height="10" align="right"><a href="stock?t=CAG&ty=c&p=d&b=1" ">6.03%</a></td><td height="10" align="right"><a href="stock?t=CAG&ty=c&p=d&b=1" ">3,609,515</a></td><td height="10" align="right"data-boxover-ticker="CAG" data-boxover-company="Conagra Brands Inc" data-boxover-industry="Packaged Foods" data-boxover-country="USA" data-boxover-value="6.48B"><a href="stock?t=CAG&ty=c&p=d&b=1" "><span class="color-text is-positive">13.56</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=O&ty=c&p=d&b=1" ">130</a></td><td height="10" align="left"data-boxover-ticker="O" data-boxover-company="Realty Income Corp" data-boxover-industry="REIT - Retail" data-boxover-country="USA" data-boxover-value="51.27B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=O&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/O.svg')"><img src="https://logo.finviz.com/O.svg" alt="O logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>O</span></a><a href="stock?t=O&ty=c&p=d&b=1" class="tab-link">O</a></span></td><td height="10" align="left"><a href="stock?t=O&ty=c&p=d&b=1" ">Realty Income Corp</a></td><td height="10" align="left"><a href="stock?t=O&ty=c&p=d&b=1" ">Real Estate</a></td><td height="10" align="left"><a href="stock?t=O&ty=c&p=d&b=1" ">REIT - Retail</a></td><td height="10" align="left"><a href="stock?t=O&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=O&ty=c&p=d&b=1" ">51.27B</a></td><td height="10" align="right"><a href="stock?t=O&ty=c&p=d&b=1" ">3.26</a></td><td height="10" align="right"><a href="stock?t=O&ty=c&p=d&b=1" ">6.02%</a></td><td height="10" align="right"><a href="stock?t=O&ty=c&p=d&b=1" ">1,329,812</a></td><td height="10" align="right"data-boxover-ticker="O" data-boxover-company="Realty Income Corp" data-boxover-industry="REIT - Retail" data-boxover-country="USA" data-boxover-value="51.27B"><a href="stock?t=O&ty=c&p=d&b=1" "><span class="color-text is-positive">54.19</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=WIT&ty=c&p=d&b=1" ">131</a></td><td height="10" align="left"data-boxover-ticker="WIT" data-boxover-company="Wipro Ltd ADR" data-boxover-industry="Information Technology Services" data-boxover-country="India" data-boxover-value="16.62B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=WIT&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/WIT.svg')"><img src="https://logo.finviz.com/WIT.svg" alt="WIT logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>W</span></a><a href="stock?t=WIT&ty=c&p=d&b=1" class="tab-link">WIT</a></span></td><td height="10" align="left"><a href="stock?t=WIT&ty=c&p=d&b=1" ">Wipro Ltd ADR</a></td><td height="10" align="left"><a href="stock?t=WIT&ty=c&p=d&b=1" ">Technology</a></td><td height="10" align="left"><a href="stock?t=WIT&ty=c&p=d&b=1" ">Information Technology Services</a></td><td height="10" align="left"><a href="stock?t=WIT&ty=c&p=d&b=1" ">India</a></td><td height="10" align="right"><a href="stock?t=WIT&ty=c&p=d&b=1" ">16.62B</a></td><td height="10" align="right"><a href="stock?t=WIT&ty=c&p=d&b=1" ">0.10</a></td><td height="10" align="right"><a href="stock?t=WIT&ty=c&p=d&b=1" ">6.01%</a></td><td height="10" align="right"><a href="stock?t=WIT&ty=c&p=d&b=1" ">912,993</a></td><td height="10" align="right"data-boxover-ticker="WIT" data-boxover-company="Wipro Ltd ADR" data-boxover-industry="Information Technology Services" data-boxover-country="India" data-boxover-value="16.62B"><a href="stock?t=WIT&ty=c&p=d&b=1" "><span class="color-text is-negative">1.68</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=ENB&ty=c&p=d&b=1" ">132</a></td><td height="10" align="left"data-boxover-ticker="ENB" data-boxover-company="Enbridge Inc" data-boxover-industry="Oil &amp; Gas Midstream" data-boxover-country="Canada" data-boxover-value="104.76B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=ENB&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #353535; --logo-url: url('https://logo.finviz.com/ENB.svg')"><img src="https://logo.finviz.com/ENB.svg" alt="ENB logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>E</span></a><a href="stock?t=ENB&ty=c&p=d&b=1" class="tab-link">ENB</a></span></td><td height="10" align="left"><a href="stock?t=ENB&ty=c&p=d&b=1" ">Enbridge Inc</a></td><td height="10" align="left"><a href="stock?t=ENB&ty=c&p=d&b=1" ">Energy</a></td><td height="10" align="left"><a href="stock?t=ENB&ty=c&p=d&b=1" ">Oil & Gas Midstream</a></td><td height="10" align="left"><a href="stock?t=ENB&ty=c&p=d&b=1" ">Canada</a></td><td height="10" align="right"><a href="stock?t=ENB&ty=c&p=d&b=1" ">104.76B</a></td><td height="10" align="right"><a href="stock?t=ENB&ty=c&p=d&b=1" ">2.78</a></td><td height="10" align="right"><a href="stock?t=ENB&ty=c&p=d&b=1" ">6.01%</a></td><td height="10" align="right"><a href="stock?t=ENB&ty=c&p=d&b=1" ">801,574</a></td><td height="10" align="right"data-boxover-ticker="ENB" data-boxover-company="Enbridge Inc" data-boxover-industry="Oil &amp; Gas Midstream" data-boxover-country="Canada" data-boxover-value="104.76B"><a href="stock?t=ENB&ty=c&p=d&b=1" "><span class="color-text is-positive">46.19</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=NNN&ty=c&p=d&b=1" ">133</a></td><td height="10" align="left"data-boxover-ticker="NNN" data-boxover-company="NNN REIT Inc" data-boxover-industry="REIT - Retail" data-boxover-country="USA" data-boxover-value="7.81B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=NNN&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/NNN.svg')"><img src="https://logo.finviz.com/NNN.svg" alt="NNN logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>N</span></a><a href="stock?t=NNN&ty=c&p=d&b=1" class="tab-link">NNN</a></span></td><td height="10" align="left"><a href="stock?t=NNN&ty=c&p=d&b=1" ">NNN REIT Inc</a></td><td height="10" align="left"><a href="stock?t=NNN&ty=c&p=d&b=1" ">Real Estate</a></td><td height="10" align="left"><a href="stock?t=NNN&ty=c&p=d&b=1" ">REIT - Retail</a></td><td height="10" align="left"><a href="stock?t=NNN&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=NNN&ty=c&p=d&b=1" ">7.81B</a></td><td height="10" align="right"><a href="stock?t=NNN&ty=c&p=d&b=1" ">2.44</a></td><td height="10" align="right"><a href="stock?t=NNN&ty=c&p=d&b=1" ">6.00%</a></td><td height="10" align="right"><a href="stock?t=NNN&ty=c&p=d&b=1" ">202,883</a></td><td height="10" align="right"data-boxover-ticker="NNN" data-boxover-company="NNN REIT Inc" data-boxover-industry="REIT - Retail" data-boxover-country="USA" data-boxover-value="7.81B"><a href="stock?t=NNN&ty=c&p=d&b=1" "><span class="color-text is-positive">40.69</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">134</a></td><td height="10" align="left"data-boxover-ticker="BSTZ" data-boxover-company="BlackRock Science and Technology Term Trust" data-boxover-industry="Closed-End Fund - Equity" data-boxover-country="USA" data-boxover-value="2.14B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=BSTZ&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #1A1E21; --logo-url: url('https://logo.finviz.com/BSTZ.svg')"><img src="https://logo.finviz.com/BSTZ.svg" alt="BSTZ logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>B</span></a><a href="stock?t=BSTZ&ty=c&p=d&b=1" class="tab-link">BSTZ</a></span></td><td height="10" align="left"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">BlackRock Science and Technology Term Trust</a></td><td height="10" align="left"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">Financial</a></td><td height="10" align="left"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">Closed-End Fund - Equity</a></td><td height="10" align="left"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">2.14B</a></td><td height="10" align="right"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">1.85</a></td><td height="10" align="right"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">5.94%</a></td><td height="10" align="right"><a href="stock?t=BSTZ&ty=c&p=d&b=1" ">39,528</a></td><td height="10" align="right"data-boxover-ticker="BSTZ" data-boxover-company="BlackRock Science and Technology Term Trust" data-boxover-industry="Closed-End Fund - Equity" data-boxover-country="USA" data-boxover-value="2.14B"><a href="stock?t=BSTZ&ty=c&p=d&b=1" "><span class="color-text is-positive">31.19</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=OHI&ty=c&p=d&b=1" ">135</a></td><td height="10" align="left"data-boxover-ticker="OHI" data-boxover-company="Omega Healthcare Investors Inc" data-boxover-industry="REIT - Healthcare Facilities" data-boxover-country="USA" data-boxover-value="13.77B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=OHI&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/OHI.svg')"><img src="https://logo.finviz.com/OHI.svg" alt="OHI logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>O</span></a><a href="stock?t=OHI&ty=c&p=d&b=1" class="tab-link">OHI</a></span></td><td height="10" align="left"><a href="stock?t=OHI&ty=c&p=d&b=1" ">Omega Healthcare Investors Inc</a></td><td height="10" align="left"><a href="stock?t=OHI&ty=c&p=d&b=1" ">Real Estate</a></td><td height="10" align="left"><a href="stock?t=OHI&ty=c&p=d&b=1" ">REIT - Healthcare Facilities</a></td><td height="10" align="left"><a href="stock?t=OHI&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=OHI&ty=c&p=d&b=1" ">13.77B</a></td><td height="10" align="right"><a href="stock?t=OHI&ty=c&p=d&b=1" ">2.70</a></td><td height="10" align="right"><a href="stock?t=OHI&ty=c&p=d&b=1" ">5.94%</a></td><td height="10" align="right"><a href="stock?t=OHI&ty=c&p=d&b=1" ">529,473</a></td><td height="10" align="right"data-boxover-ticker="OHI" data-boxover-company="Omega Healthcare Investors Inc" data-boxover-industry="REIT - Healthcare Facilities" data-boxover-country="USA" data-boxover-value="13.77B"><a href="stock?t=OHI&ty=c&p=d&b=1" "><span class="color-text is-positive">45.44</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=RYN&ty=c&p=d&b=1" ">136</a></td><td height="10" align="left"data-boxover-ticker="RYN" data-boxover-company="Rayonier Inc" data-boxover-industry="REIT - Specialty" data-boxover-country="USA" data-boxover-value="5.35B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=RYN&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/RYN.svg')"><img src="https://logo.finviz.com/RYN.svg" alt="RYN logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>R</span></a><a href="stock?t=RYN&ty=c&p=d&b=1" class="tab-link">RYN</a></span></td><td height="10" align="left"><a href="stock?t=RYN&ty=c&p=d&b=1" ">Rayonier Inc</a></td><td height="10" align="left"><a href="stock?t=RYN&ty=c&p=d&b=1" ">Real Estate</a></td><td height="10" align="left"><a href="stock?t=RYN&ty=c&p=d&b=1" ">REIT - Specialty</a></td><td height="10" align="left"><a href="stock?t=RYN&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=RYN&ty=c&p=d&b=1" ">5.35B</a></td><td height="10" align="right"><a href="stock?t=RYN&ty=c&p=d&b=1" ">1.06</a></td><td height="10" align="right"><a href="stock?t=RYN&ty=c&p=d&b=1" ">5.90%</a></td><td height="10" align="right"><a href="stock?t=RYN&ty=c&p=d&b=1" ">861,385</a></td><td height="10" align="right"data-boxover-ticker="RYN" data-boxover-company="Rayonier Inc" data-boxover-industry="REIT - Specialty" data-boxover-country="USA" data-boxover-value="5.35B"><a href="stock?t=RYN&ty=c&p=d&b=1" "><span class="color-text is-negative">17.90</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=AEG&ty=c&p=d&b=1" ">137</a></td><td height="10" align="left"data-boxover-ticker="AEG" data-boxover-company="Aegon Ltd" data-boxover-industry="Insurance - Diversified" data-boxover-country="Netherlands" data-boxover-value="12.62B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=AEG&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #0069B4; --logo-url: url('https://logo.finviz.com/AEG.svg')"><img src="https://logo.finviz.com/AEG.svg" alt="AEG logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>A</span></a><a href="stock?t=AEG&ty=c&p=d&b=1" class="tab-link">AEG</a></span></td><td height="10" align="left"><a href="stock?t=AEG&ty=c&p=d&b=1" ">Aegon Ltd</a></td><td height="10" align="left"><a href="stock?t=AEG&ty=c&p=d&b=1" ">Financial</a></td><td height="10" align="left"><a href="stock?t=AEG&ty=c&p=d&b=1" ">Insurance - Diversified</a></td><td height="10" align="left"><a href="stock?t=AEG&ty=c&p=d&b=1" ">Netherlands</a></td><td height="10" align="right"><a href="stock?t=AEG&ty=c&p=d&b=1" ">12.62B</a></td><td height="10" align="right"><a href="stock?t=AEG&ty=c&p=d&b=1" ">0.50</a></td><td height="10" align="right"><a href="stock?t=AEG&ty=c&p=d&b=1" ">5.90%</a></td><td height="10" align="right"><a href="stock?t=AEG&ty=c&p=d&b=1" ">1,187,974</a></td><td height="10" align="right"data-boxover-ticker="AEG" data-boxover-company="Aegon Ltd" data-boxover-industry="Insurance - Diversified" data-boxover-country="Netherlands" data-boxover-value="12.62B"><a href="stock?t=AEG&ty=c&p=d&b=1" "><span class="color-text is-positive">8.55</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">138</a></td><td height="10" align="left"data-boxover-ticker="OMAB" data-boxover-company="Grupo Aeroportuario del Centro Norte SAB de C.V ADR" data-boxover-industry="Airports &amp; Air Services" data-boxover-country="Mexico" data-boxover-value="4.04B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=OMAB&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #F0F3FA; --logo-url: url('https://logo.finviz.com/OMAB.svg')"><img src="https://logo.finviz.com/OMAB.svg" alt="OMAB logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>O</span></a><a href="stock?t=OMAB&ty=c&p=d&b=1" class="tab-link">OMAB</a></span></td><td height="10" align="left"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">Grupo Aeroportuario del Centro Norte SAB de C.V ADR</a></td><td height="10" align="left"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">Industrials</a></td><td height="10" align="left"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">Airports & Air Services</a></td><td height="10" align="left"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">Mexico</a></td><td height="10" align="right"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">4.04B</a></td><td height="10" align="right"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">5.66</a></td><td height="10" align="right"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">5.90%</a></td><td height="10" align="right"><a href="stock?t=OMAB&ty=c&p=d&b=1" ">26,833</a></td><td height="10" align="right"data-boxover-ticker="OMAB" data-boxover-company="Grupo Aeroportuario del Centro Norte SAB de C.V ADR" data-boxover-industry="Airports &amp; Air Services" data-boxover-country="Mexico" data-boxover-value="4.04B"><a href="stock?t=OMAB&ty=c&p=d&b=1" "><span class="color-text is-positive">96.06</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=HRL&ty=c&p=d&b=1" ">139</a></td><td height="10" align="left"data-boxover-ticker="HRL" data-boxover-company="Hormel Foods Corp" data-boxover-industry="Packaged Foods" data-boxover-country="USA" data-boxover-value="10.94B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=HRL&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #018E41; --logo-url: url('https://logo.finviz.com/HRL.svg')"><img src="https://logo.finviz.com/HRL.svg" alt="HRL logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>H</span></a><a href="stock?t=HRL&ty=c&p=d&b=1" class="tab-link">HRL</a></span></td><td height="10" align="left"><a href="stock?t=HRL&ty=c&p=d&b=1" ">Hormel Foods Corp</a></td><td height="10" align="left"><a href="stock?t=HRL&ty=c&p=d&b=1" ">Consumer Defensive</a></td><td height="10" align="left"><a href="stock?t=HRL&ty=c&p=d&b=1" ">Packaged Foods</a></td><td height="10" align="left"><a href="stock?t=HRL&ty=c&p=d&b=1" ">USA</a></td><td height="10" align="right"><a href="stock?t=HRL&ty=c&p=d&b=1" ">10.94B</a></td><td height="10" align="right"><a href="stock?t=HRL&ty=c&p=d&b=1" ">1.17</a></td><td height="10" align="right"><a href="stock?t=HRL&ty=c&p=d&b=1" ">5.88%</a></td><td height="10" align="right"><a href="stock?t=HRL&ty=c&p=d&b=1" ">1,328,244</a></td><td height="10" align="right"data-boxover-ticker="HRL" data-boxover-company="Hormel Foods Corp" data-boxover-industry="Packaged Foods" data-boxover-country="USA" data-boxover-value="10.94B"><a href="stock?t=HRL&ty=c&p=d&b=1" "><span class="color-text is-negative">19.89</span></a></td></tr><tr class="styled-row is-bordered is-rounded group is-hoverable is-striped has-color-text" valign="top">
+<td height="10" align="right"><a href="stock?t=INFY&ty=c&p=d&b=1" ">140</a></td><td height="10" align="left"data-boxover-ticker="INFY" data-boxover-company="Infosys Ltd ADR" data-boxover-industry="Information Technology Services" data-boxover-country="India" data-boxover-value="43.02B"><span class="flex items-center gap-1 pl-0.5"><a class="company-ticker" href="stock?t=INFY&amp;ty=c&amp;p=d&amp;b=1" style="--hover-color: #2A7CC9; --logo-url: url('https://logo.finviz.com/INFY.svg')"><img src="https://logo.finviz.com/INFY.svg" alt="INFY logo" crossorigin="anonymous" onload="this.classList.add('is-loaded');this.parentElement.classList.add('is-logo-loaded')" /><span>I</span></a><a href="stock?t=INFY&ty=c&p=d&b=1" class="tab-link">INFY</a></span></td><td height="10" align="left"><a href="stock?t=INFY&ty=c&p=d&b=1" ">Infosys Ltd ADR</a></td><td height="10" align="left"><a href="stock?t=INFY&ty=c&p=d&b=1" ">Technology</a></td><td height="10" align="left"><a href="stock?t=INFY&ty=c&p=d&b=1" ">Information Technology Services</a></td><td height="10" align="left"><a href="stock?t=INFY&ty=c&p=d&b=1" ">India</a></td><td height="10" align="right"><a href="stock?t=INFY&ty=c&p=d&b=1" ">43.02B</a></td><td height="10" align="right"><a href="stock?t=INFY&ty=c&p=d&b=1" ">0.62</a></td><td height="10" align="right"><a href="stock?t=INFY&ty=c&p=d&b=1" ">5.87%</a></td><td height="10" align="right"><a href="stock?t=INFY&ty=c&p=d&b=1" ">6,474,311</a></td><td height="10" align="right"data-boxover-ticker="INFY" data-boxover-company="Infosys Ltd ADR" data-boxover-industry="Information Technology Services" data-boxover-country="India" data-boxover-value="43.02B"><a href="stock?t=INFY&ty=c&p=d&b=1" "><span class="color-text is-negative">10.60</span></a></td></tr></table></td></tr></table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="left" class="count-text"><b>Filters:</b> cap:midover fa_div:pos</td></tr>
+</table>
+</td>
+</tr>
+<tr><td><img src="gfx/nic2x2.gif" style="display:block;width:2px;height:8px" alt="" border="0"></td></tr>
+<tr>
+<td width="100%" align="center" valign="top" id="screener_pagination" class="body-table screener_pagination">
+<a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=101&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages is-prev" onclick="trackPagination('bottom')"><svg width="16" height="16">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#arrowBackward"/>
+</svg></a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">1</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=21&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">2</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=41&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">3</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=61&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">4</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=81&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">5</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=101&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">6</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=121&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages is-selected" onclick="trackPagination('bottom')"><b>7</b></a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=141&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">8</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=161&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">9</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=181&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">10</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=201&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">11</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=221&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">12</a><span class="is-ellipsis">⋯</span><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=381&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">20</a><span class="is-ellipsis">⋯</span><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=581&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">30</a><span class="is-ellipsis">⋯</span><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=781&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">40</a><span class="is-ellipsis">⋯</span><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=981&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">50</a><span class="is-ellipsis">⋯</span><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=1181&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">60</a><span class="is-ellipsis">⋯</span><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=1281&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages" onclick="trackPagination('bottom')">65</a><a href="screener?v=152&f=cap_midover,fa_div_pos&o=-dividendyield&r=141&c=0,1,2,3,4,5,6,75,14,67,65" class="screener-pages is-next" onclick="trackPagination('bottom')"><svg width="16" height="16">
+    <use href="/assets/dist-icons/icons.4ede4ca4.svg#arrowForward"/>
+</svg></a>
+</td>
+</tr>
+<tr><td><img src="gfx/nic2x2.gif" style="width:2px;height:10px" alt="" border="0"></td></tr>
+</table>
+<div id="IC_D_3x3_1"class="relative overflow-hidden flex items-center justify-center w-full mx-auto" style="width:970px;height:250px;max-height:250px"></div></div>
+</td></tr><!-- TS
+RDN|34.12|447258
+MTN|144.76|73113
+SNY|39.66|960583
+CLX|83.57|631728
+LINE|34.88|143704
+KNTK|53.43|69005
+EPD|37.04|488706
+FMX|118.55|59091
+CAG|13.56|3609515
+O|54.19|1329812
+WIT|1.68|912993
+ENB|46.19|801574
+NNN|40.69|202883
+BSTZ|31.19|39528
+OHI|45.44|529473
+RYN|17.90|861385
+AEG|8.55|1187974
+OMAB|96.06|26833
+HRL|19.89|1328244
+INFY|10.60|6474311
+TE -->
+
+            <script type="text/javascript">
+                ScreenerRefreshInit(0, 32);
+            </script>
+        </table></div></div>
+              <div id="root"></div>
+              <script id="route-init-data" type="application/json">{"tableSettings":{"tableName":"screener-custom","availableColumns":["row","ticker","company","securityType","index","sector","industry","country","exchange","marketCap","PE","forwardPE","PEG","PS","PB","PC","PFCF","book","cashPerShare","dividend","dividendYield","dividendTTM","dividendExDate","dividend1y","dividend3y","dividend5y","payoutRatio","eps","estQ1","epsYoY","epsYoY1","eps3Years","eps5Years","estLTGrowth","sales3Years","sales5Years","salesQoQ","epsQoQ","epsYoYTTM","salesYoYTTM","sales","income","epsSurprise","revenueSurprise","enterpriseValue","evEbitda","evSales","sharesOutstanding2","sharesFloat","floatoutstandingpct","insiderOwn","insiderTrans","instOwn","instTrans","shortInterestShare","shortInterestRatio","shortInterest","roa","roe","roi","curRatio","quickRatio","ltdebtEq","debtEq","grossMargin","operMargin","netMargin","perf1w","perf4w","perf13w","perf26w","perfYtd","perf52w","perf3y","perf5y","perf10y","beta","averageTrueRange","volatility1w","volatility4w","sma20","sma50","sma200","high50d","low50d","high52w","low52w","52Wrange","highAt","lowAt","rsi","candlestick","earningsDate","ipoDate","optionable","shortable","employees","changeopen","gap","recom","averageVolume","relativeVolume","volume","targetPrice","prevClose","open","high","low","price","change","newsTime","newsUrl","newsTitle","wiimDailyDigest","e.LinkedIndexName","e.Category","e.AssetType","e.NetExpenseRatio","e.TotalHoldings","e.AssetsUnderManagement","e.NetFlows1Month","e.NetFlows1MonthPct","e.NetFlows3Month","e.NetFlows3MonthPct","e.NetFlowsYTD","e.NetFlowsYTDPct","e.Return1Year","e.Return3Year","e.Return5Year","e.Tags"],"selectedColumns":["row","ticker","company","sector","industry","country","marketCap","dividend","dividendYield","volume","price"],"defaultColumns":["row","ticker","company","sector","industry","country","marketCap","PE","volume","price","change"],"columnsMap":{"row":{"id":"row","title":"No.","index":0,"categoryIndex":0},"ticker":{"id":"ticker","title":"Ticker","index":1,"categoryIndex":0},"company":{"id":"company","title":"Company","index":2,"categoryIndex":0},"securityType":{"id":"securityType","title":"Security Type","index":151,"categoryIndex":0},"index":{"id":"index","title":"Index","index":79,"categoryIndex":0},"sector":{"id":"sector","title":"Sector","index":3,"categoryIndex":0},"industry":{"id":"industry","title":"Industry","index":4,"categoryIndex":0},"country":{"id":"country","title":"Country","index":5,"categoryIndex":0},"exchange":{"id":"exchange","title":"Exchange","index":129,"categoryIndex":0},"marketCap":{"id":"marketCap","title":"Market Cap.","index":6,"categoryIndex":1},"PE":{"id":"PE","title":"P/E","index":7,"categoryIndex":1},"forwardPE":{"id":"forwardPE","title":"Forward P/E","index":8,"categoryIndex":1},"PEG":{"id":"PEG","title":"PEG","index":9,"categoryIndex":1},"PS":{"id":"PS","title":"P/S","index":10,"categoryIndex":1},"PB":{"id":"PB","title":"P/B","index":11,"categoryIndex":1},"PC":{"id":"PC","title":"P/Cash","index":12,"categoryIndex":1},"PFCF":{"id":"PFCF","title":"P/Free Cash Flow","index":13,"categoryIndex":1},"book":{"id":"book","title":"Book Value per Share","index":73,"categoryIndex":2},"cashPerShare":{"id":"cashPerShare","title":"Cash per Share","index":74,"categoryIndex":2},"dividend":{"id":"dividend","title":"Dividend","index":75,"categoryIndex":3},"dividendYield":{"id":"dividendYield","title":"Dividend Yield","index":14,"categoryIndex":3},"dividendTTM":{"id":"dividendTTM","title":"Dividend TTM","index":130,"categoryIndex":3},"dividendExDate":{"id":"dividendExDate","title":"Dividend Ex-Date","index":131,"categoryIndex":3},"dividend1y":{"id":"dividend1y","title":"Dividend Growth 1 Year","index":147,"categoryIndex":3},"dividend3y":{"id":"dividend3y","title":"Dividend Growth 3 Years","index":148,"categoryIndex":3},"dividend5y":{"id":"dividend5y","title":"Dividend Growth 5 Years","index":149,"categoryIndex":3},"payoutRatio":{"id":"payoutRatio","title":"Payout Ratio","index":15,"categoryIndex":3},"eps":{"id":"eps","title":"EPS","index":16,"categoryIndex":4},"estQ1":{"id":"estQ1","title":"EPS Estimate Next quarter","index":77,"categoryIndex":4},"epsYoY":{"id":"epsYoY","title":"EPS Growth This Year","index":17,"categoryIndex":4},"epsYoY1":{"id":"epsYoY1","title":"EPS Growth Next Year","index":18,"categoryIndex":4},"eps3Years":{"id":"eps3Years","title":"EPS Growth Past 3 Years","index":142,"categoryIndex":4},"eps5Years":{"id":"eps5Years","title":"EPS Growth Past 5 Years","index":19,"categoryIndex":4},"estLTGrowth":{"id":"estLTGrowth","title":"EPS Growth Next 5 Years","index":20,"categoryIndex":4},"sales3Years":{"id":"sales3Years","title":"Sales Growth Past 3 Years","index":143,"categoryIndex":4},"sales5Years":{"id":"sales5Years","title":"Sales Growth Past 5 Years","index":21,"categoryIndex":4},"salesQoQ":{"id":"salesQoQ","title":"Sales Growth Qtr Over Qtr","index":23,"categoryIndex":4},"epsQoQ":{"id":"epsQoQ","title":"EPS Growth Qtr Over Qtr","index":22,"categoryIndex":4},"epsYoYTTM":{"id":"epsYoYTTM","title":"EPS Year Over Year TTM","index":132,"categoryIndex":4},"salesYoYTTM":{"id":"salesYoYTTM","title":"Sales Year Over Year TTM","index":133,"categoryIndex":4},"sales":{"id":"sales","title":"Sales","index":82,"categoryIndex":4},"income":{"id":"income","title":"Income","index":78,"categoryIndex":4},"epsSurprise":{"id":"epsSurprise","title":"EPS Surprise","index":127,"categoryIndex":4},"revenueSurprise":{"id":"revenueSurprise","title":"Revenue Surprise","index":128,"categoryIndex":4},"enterpriseValue":{"id":"enterpriseValue","title":"Enterprise Value","index":144,"categoryIndex":1},"evEbitda":{"id":"evEbitda","title":"EV/EBITDA","index":145,"categoryIndex":1},"evSales":{"id":"evSales","title":"EV/Sales","index":146,"categoryIndex":1},"sharesOutstanding2":{"id":"sharesOutstanding2","title":"Shares Outstanding","index":24,"categoryIndex":5},"sharesFloat":{"id":"sharesFloat","title":"Shares Float","index":25,"categoryIndex":5},"floatoutstandingpct":{"id":"floatoutstandingpct","title":"Float/Outstanding","index":85,"categoryIndex":5},"insiderOwn":{"id":"insiderOwn","title":"Insider Ownership","index":26,"categoryIndex":5},"insiderTrans":{"id":"insiderTrans","title":"Insider Transactions","index":27,"categoryIndex":5},"instOwn":{"id":"instOwn","title":"Institutional Ownership","index":28,"categoryIndex":5},"instTrans":{"id":"instTrans","title":"Institutional Transactions","index":29,"categoryIndex":5},"shortInterestShare":{"id":"shortInterestShare","title":"Short Float","index":30,"categoryIndex":5},"shortInterestRatio":{"id":"shortInterestRatio","title":"Short Ratio","index":31,"categoryIndex":5},"shortInterest":{"id":"shortInterest","title":"Short Interest","index":84,"categoryIndex":5},"roa":{"id":"roa","title":"Return on Assets","index":32,"categoryIndex":2},"roe":{"id":"roe","title":"Return on Equity","index":33,"categoryIndex":2},"roi":{"id":"roi","title":"Return on Invested Capital","index":34,"categoryIndex":2},"curRatio":{"id":"curRatio","title":"Current Ratio","index":35,"categoryIndex":2},"quickRatio":{"id":"quickRatio","title":"Quick Ratio","index":36,"categoryIndex":2},"ltdebtEq":{"id":"ltdebtEq","title":"Long Term Debt/Equity","index":37,"categoryIndex":2},"debtEq":{"id":"debtEq","title":"Total Debt/Equity","index":38,"categoryIndex":2},"grossMargin":{"id":"grossMargin","title":"Gross Margin","index":39,"categoryIndex":4},"operMargin":{"id":"operMargin","title":"Operating Margin","index":40,"categoryIndex":4},"netMargin":{"id":"netMargin","title":"Net Profit Margin","index":41,"categoryIndex":4},"perf1w":{"id":"perf1w","title":"Performance (Week)","index":42,"categoryIndex":6},"perf4w":{"id":"perf4w","title":"Performance (Month)","index":43,"categoryIndex":6},"perf13w":{"id":"perf13w","title":"Performance (Quarter)","index":44,"categoryIndex":6},"perf26w":{"id":"perf26w","title":"Performance (Half Year)","index":45,"categoryIndex":6},"perfYtd":{"id":"perfYtd","title":"Performance (Year To Date)","index":47,"categoryIndex":6},"perf52w":{"id":"perf52w","title":"Performance (Year)","index":46,"categoryIndex":6},"perf3y":{"id":"perf3y","title":"Performance (3 Years)","index":138,"categoryIndex":6},"perf5y":{"id":"perf5y","title":"Performance (5 Years)","index":139,"categoryIndex":6},"perf10y":{"id":"perf10y","title":"Performance (10 Years)","index":140,"categoryIndex":6},"beta":{"id":"beta","title":"Beta","index":48,"categoryIndex":7},"averageTrueRange":{"id":"averageTrueRange","title":"Average True Range","index":49,"categoryIndex":7},"volatility1w":{"id":"volatility1w","title":"Volatility (Week)","index":50,"categoryIndex":7},"volatility4w":{"id":"volatility4w","title":"Volatility (Month)","index":51,"categoryIndex":7},"sma20":{"id":"sma20","title":"20-Day Simple Moving Average","index":52,"categoryIndex":7},"sma50":{"id":"sma50","title":"50-Day Simple Moving Average","index":53,"categoryIndex":7},"sma200":{"id":"sma200","title":"200-Day Simple Moving Average","index":54,"categoryIndex":7},"high50d":{"id":"high50d","title":"50-Day High","index":55,"categoryIndex":7},"low50d":{"id":"low50d","title":"50-Day Low","index":56,"categoryIndex":7},"high52w":{"id":"high52w","title":"52-Week High","index":57,"categoryIndex":7},"low52w":{"id":"low52w","title":"52-Week Low","index":58,"categoryIndex":7},"52Wrange":{"id":"52Wrange","title":"52-Week Range","index":134,"categoryIndex":7},"highAt":{"id":"highAt","title":"All-Time High","index":125,"categoryIndex":7},"lowAt":{"id":"lowAt","title":"All-Time Low","index":126,"categoryIndex":7},"rsi":{"id":"rsi","title":"RSI","index":59,"categoryIndex":7},"candlestick":{"id":"candlestick","title":"Candlestick Pattern","index":153,"categoryIndex":7},"earningsDate":{"id":"earningsDate","title":"Earnings Date","index":68,"categoryIndex":0},"ipoDate":{"id":"ipoDate","title":"IPO Date","index":70,"categoryIndex":0},"optionable":{"id":"optionable","title":"Optionable","index":80,"categoryIndex":0},"shortable":{"id":"shortable","title":"Shortable","index":83,"categoryIndex":0},"employees":{"id":"employees","title":"Employees","index":76,"categoryIndex":0},"changeopen":{"id":"changeopen","title":"Change from Open %","index":60,"categoryIndex":8},"gap":{"id":"gap","title":"Gap","index":61,"categoryIndex":8},"recom":{"id":"recom","title":"Analyst Recom.","index":62,"categoryIndex":9},"averageVolume":{"id":"averageVolume","title":"Average Volume","index":63,"categoryIndex":8},"relativeVolume":{"id":"relativeVolume","title":"Relative Volume","index":64,"categoryIndex":8},"volume":{"id":"volume","title":"Volume","index":67,"categoryIndex":8},"targetPrice":{"id":"targetPrice","title":"Target Price","index":69,"categoryIndex":9},"prevClose":{"id":"prevClose","title":"Previous Close","index":81,"categoryIndex":8},"open":{"id":"open","title":"Open","index":86,"categoryIndex":8},"high":{"id":"high","title":"High","index":87,"categoryIndex":8},"low":{"id":"low","title":"Low","index":88,"categoryIndex":8},"price":{"id":"price","title":"Price","index":65,"categoryIndex":8},"change":{"id":"change","title":"Change %","index":66,"categoryIndex":8},"newsTime":{"id":"newsTime","title":"News Time","index":135,"categoryIndex":10},"newsUrl":{"id":"newsUrl","title":"News URL","index":136,"categoryIndex":10},"newsTitle":{"id":"newsTitle","title":"News Title","index":137,"categoryIndex":10},"wiimDailyDigest":{"id":"wiimDailyDigest","title":"Daily Digest","index":150,"categoryIndex":10},"e.LinkedIndexName":{"id":"e.LinkedIndexName","title":"Tracked Index","index":152,"categoryIndex":11},"e.Category":{"id":"e.Category","title":"Category","index":103,"categoryIndex":11},"e.AssetType":{"id":"e.AssetType","title":"Asset Type","index":100,"categoryIndex":11},"e.NetExpenseRatio":{"id":"e.NetExpenseRatio","title":"Net Expense Ratio","index":107,"categoryIndex":11},"e.TotalHoldings":{"id":"e.TotalHoldings","title":"Total Holdings","index":108,"categoryIndex":11},"e.AssetsUnderManagement":{"id":"e.AssetsUnderManagement","title":"AUM","index":109,"categoryIndex":11},"e.NetFlows1Month":{"id":"e.NetFlows1Month","title":"Net Flows 1M","index":112,"categoryIndex":11},"e.NetFlows1MonthPct":{"id":"e.NetFlows1MonthPct","title":"Net Flows% 1M","index":113,"categoryIndex":11},"e.NetFlows3Month":{"id":"e.NetFlows3Month","title":"Net Flows 3M","index":114,"categoryIndex":11},"e.NetFlows3MonthPct":{"id":"e.NetFlows3MonthPct","title":"Net Flows% 3M","index":115,"categoryIndex":11},"e.NetFlowsYTD":{"id":"e.NetFlowsYTD","title":"Net Flows YTD","index":116,"categoryIndex":11},"e.NetFlowsYTDPct":{"id":"e.NetFlowsYTDPct","title":"Net Flows% YTD","index":117,"categoryIndex":11},"e.Return1Year":{"id":"e.Return1Year","title":"Return% 1Y","index":120,"categoryIndex":11},"e.Return3Year":{"id":"e.Return3Year","title":"Return% 3Y","index":121,"categoryIndex":11},"e.Return5Year":{"id":"e.Return5Year","title":"Return% 5Y","index":122,"categoryIndex":11},"e.Tags":{"id":"e.Tags","title":"Tags","index":105,"categoryIndex":11}},"categories":[{"id":"identification-classification","title":"Identification \u0026 Classification"},{"id":"valuation","title":"Valuation"},{"id":"balance-sheet-ratios","title":"Balance Sheet \u0026 Ratios"},{"id":"dividend","title":"Dividend"},{"id":"income-statements-ratios","title":"Income Statements \u0026 Ratios"},{"id":"ownership","title":"Ownership"},{"id":"performance","title":"Performance"},{"id":"technical-indicators","title":"Technical Indicators"},{"id":"intraday","title":"Intraday"},{"id":"sentiment-analyst-data","title":"Sentiment \u0026 Analyst Data"},{"id":"news","title":"News"},{"id":"etf","title":"ETF"}]},"pageSettings":null}</script>
+              <script src="/assets/dist-legacy/5179.v1.532d917b.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/5432.v1.5b5ac708.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/1378.v1.82520c61.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/8672.v1.fa7a102c.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/2019.v1.76106f5a.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/8028.v1.70cb29db.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/816.v1.d2017e60.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/1571.v1.9d0a223f.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/6000.v1.96630ff5.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/9864.v1.b9b386c0.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/9978.v1.1c593aee.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/3580.v1.228ab299.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/4482.v1.2c6eac2d.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/2665.v1.0a4a8e29.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/1417.v1.acf33645.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/33.v1.46f5101c.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/2347.v1.c7b38db9.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/main.v1.fe8257f5.js" onerror="window.handleScriptNotLoaded(this)" defer></script>
+            
+            <div class="footer" style="margin-top: 20px;padding-bottom: 115px">
+                <div class="footer_links">
+                    <a class="tab-link" href="/affiliate">Affiliate</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/advertise">Advertise</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/api-and-exports">API and Exports</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/careers">Careers</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/contact">Contact</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/blog">Blog</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/knowledge-base">Help</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="/privacy">Privacy</a>
+                    <span class="footer_dot"> • </span>
+                    <a class="tab-link" href="https://x.com/finviz_com" target="_blank">Follow us on X</a><span class="footer_dot"> • </span><a class="tab-link" href="javascript:window.admiral&&window.admiral('show', 'cmp.main');">Privacy Settings</a>    </div>
+    Stock quotes delayed by 1 minute. Futures and options delayed by 15 minutes.
+    <br>
+    Copyright © 2007-2026 Finviz.com. All Rights Reserved.
+    
+    <a href="/api/v1/screener-export-csv" class="internal-data-link" rel="nofollow">Export All Screener Data (CSV)</a>
+</div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-537M973G" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>window.GoogleOneTapConfig={clientId:'1033214272054-5de9gp5rii5o7cuv4qf1ephgaic4r1e3.apps.googleusercontent.com',autoSelect:true};</script>
+<script src="/assets/dist-legacy/1378.v1.82520c61.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/google_one_tap.v1.fc9ca732.js" onerror="window.handleScriptNotLoaded(this)" defer></script>    <script>
+      function getSystemTheme() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'Dark';
+        }
+        else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          return 'Light';
+        }
+        return 'No Preference';
+      }
+
+      var systemTheme = getSystemTheme()
+
+      const webdriver = navigator.webdriver === true
+      const isBotFlagHeadlessChrome = navigator.userAgent.includes('HeadlessChrome')
+      const isBotFlagFvSegmentAudit = document.cookie.includes('fv_segment_audit=true')
+      const isBotFlagNoLanguages = navigator.languages.length === 0
+      const isChrome = navigator.userAgent.includes('Chrome')
+      const isBotFlagChromeWithoutRuntime = isChrome && typeof window.chrome === 'undefined'
+      const isBotFlagChromeWithoutPlugins = isChrome && navigator.plugins.length === 0
+      const isBotFlagChromeWithoutDeviceMemory = isChrome && navigator.deviceMemory === undefined
+      const isBotFlagNoOuterSize = window.outerWidth === 0 && window.innerWidth > 0
+      const isBotFlagAutomationGlobals = (
+        ['__playwright__', '__pw_manual', '__PW_inspect', '_phantom', 'callPhantom', '__nightmare', 'domAutomation', 'domAutomationController', 'Cypress', '__selenium_unwrapped', '__selenium_evaluate', '__webdriver_evaluate', '__webdriver_script_function', '__webdriver_script_func', '__webdriver_script_fn', '__webdriver_unwrapped', '__driver_evaluate', '__driver_unwrapped', '__fxdriver_evaluate', '__fxdriver_unwrapped'].some(function(n) { return n in window }) ||
+        Object.getOwnPropertyNames(document).some(function(n) { return n.indexOf('$cdc_') === 0 || n.indexOf('$chrome_asyncScriptInfo') === 0 })
+      )
+      const fvt = window.getFvt?.()
+
+      dataLayer.push({
+            event: 'ga_context',
+            
+            dimension1: 'NotLoggedIn',
+            dimension3: window.devicePixelRatio,
+            layoutTheme: 'dark',
+            systemTheme: systemTheme,
+            bundle: 'legacy',
+            prefTheme: 'dark',
+            themeFlag: 'modern',
+            innerWidth: window.innerWidth,
+            innerHeight: window.innerHeight,
+            webdriver: webdriver,
+            isBotFlagHeadlessChrome: isBotFlagHeadlessChrome,
+            isBotFlagNoLanguages: isBotFlagNoLanguages,
+            isBotFlagChromeWithoutRuntime: isBotFlagChromeWithoutRuntime,
+            isBotFlagChromeWithoutPlugins: isBotFlagChromeWithoutPlugins,
+            isBotFlagChromeWithoutDeviceMemory: isBotFlagChromeWithoutDeviceMemory,
+            isBotFlagNoOuterSize: isBotFlagNoOuterSize,
+            isBotFlagFvSegmentAudit: isBotFlagFvSegmentAudit,
+            isBotFlagAutomationGlobals: isBotFlagAutomationGlobals,
+            isBot: isBotFlagHeadlessChrome || webdriver || isBotFlagFvSegmentAudit,
+            icAdsVariant: 'control',
+            ...(fvt && { anon_id: fvt })
+          });
+
+      if(window.__fv_deferred_gtag){
+        window.__fv_deferred_gtag.forEach(function(e){
+          if(window.gtag){ window.gtag('event',e[0],e[1]); }
+        });
+      }
+
+    </script>    <script type="text/javascript">
+        window._qevents = window._qevents || [];
+
+        (function() {
+            var elem = document.createElement('script');
+            elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+            elem.async = true;
+            elem.type = "text/javascript";
+            var scpt = document.getElementsByTagName('script')[0];
+            scpt.parentNode.insertBefore(elem, scpt);
+        })();
+
+        window._qevents.push({
+            qacct:"p-c2W8esUZ6Q8oA"
+        });
+    </script>
+    <noscript>
+        <div style="display:none;">
+            <img src="//pixel.quantserve.com/pixel/p-c2W8esUZ6Q8oA.gif" border="0" height="1" width="1" alt="Quantcast"/>
+        </div>
+    </noscript><div id="IC_D_1x1_1"class="relative overflow-hidden flex items-center justify-center w-full mx-auto"></div><div id="modal-elite-ad" class="modal-elite-ad">
+                            <div id="modal-elite-ad_content" class="modal-elite-ad_content">
+			                    <button id="modal-elite-ad-close" type="button" class="modal-elite-ad_close">×</button>
+
+                                <!--<div id="modal-elite-ad-content-0" style="display: none">
+			                        <h2>Ever heard of Finviz Elite?</h2>
+                                    <p>
+                                        Our premium service offers you real-time quotes, advanced visualizations, technical studies, and much more.<br>
+                                        Become Elite and make informed financial decisions.
+                                    </p>
+                                    <a href="/elite?utm_source=finviz&utm_medium=banner&utm_campaign=modal-0" id="modal-elite-ad-btn-0" class="" target="_blank">Find out more</a>
+                                </div>-->
+
+                                <div id="modal-elite-ad-content-1" style="display: block">
+			                        <h2>Upgrade your Finviz experience</h2>
+                                    <p>
+                                        Join thousands of traders who make more informed decisions with&nbsp;our&nbsp;premium features.
+                                        Real-time quotes, advanced&nbsp;visualizations, alerts, and much more.
+                                    </p>
+                                    <a href="/elite?utm_source=finviz&utm_medium=banner&utm_campaign=modal-1" id="modal-elite-ad-btn-1" class="modal-elite_button" target="_blank">Learn more about Finviz Elite</a>
+                                </div>
+                            </div>
+                         </div><script src="/assets/dist-legacy/script/pv.v1.b5e0f9bc.js" async></script><script>window.renderScriptNotLoaded();</script>
+<script src="/assets/dist-legacy/1378.v1.82520c61.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/8672.v1.fa7a102c.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/8028.v1.70cb29db.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/1571.v1.9d0a223f.js" onerror="window.handleScriptNotLoaded(this)" defer></script><script src="/assets/dist-legacy/elite_features_dialog.v1.8cb002e0.js" onerror="window.handleScriptNotLoaded(this)" defer></script></body>
+</html>
