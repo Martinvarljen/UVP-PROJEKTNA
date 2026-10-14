@@ -7,7 +7,7 @@ from Naredi_csv import zapisi_csv
 
 def main():
 
-    prenesi_strani(60)
+    prenesi_strani(50)
 
 
     vse_delnice = []
